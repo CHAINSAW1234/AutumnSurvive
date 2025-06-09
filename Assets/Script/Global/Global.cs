@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
-
+using UnityEngine;
 public static class NullCheck
 {
     public static bool Invoke<T>(T obj) where T : class
@@ -40,5 +40,19 @@ public static class GlobalEnum
         {
             return source.ToString();
         }
+    }
+}
+
+public static class GenerateRandom
+{
+    public static Vector2 GenerateRandomDirection(Vector2 direction, float minDegree, float maxDegree)
+    {
+        float degree = UnityEngine.Random.Range(minDegree, maxDegree);
+
+        degree *= UnityEngine.Random.Range(0, 2) == 0 ? 1 : -1;
+
+        Quaternion rotation = Quaternion.AngleAxis(degree, Vector3.forward);
+        Vector2 rotated = rotation * direction.normalized;
+        return rotated;
     }
 }
