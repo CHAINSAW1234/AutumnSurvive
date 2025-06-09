@@ -14,6 +14,8 @@ public class InputManager
 
     private Vector3 touchStartPosition = Vector3.zero;
     private Vector3 touchDirection = Vector3.zero;
+
+    private const float MovementThreshold = 150f;
     public void Update()
     {
 
@@ -36,7 +38,7 @@ public class InputManager
             else if(touch.phase == TouchPhase.Moved)
             {
                 touchDirection = new Vector3(touch.position.x - touchStartPosition.x , touch.position.y - touchStartPosition.y, 0);
-                touchDirection = Vector3.Normalize(touchDirection);
+                touchDirection = Vector3.Normalize(touchDirection) * Mathf.Lerp(0,1, touchDirection.magnitude / MovementThreshold);
             }
             else if(touch.phase == TouchPhase.Ended)
             {
@@ -52,7 +54,8 @@ public class InputManager
         else if(Input.GetMouseButton(0))
         {
             touchDirection = new Vector3(Input.mousePosition.x - touchStartPosition.x, Input.mousePosition.y - touchStartPosition.y, 0);
-            touchDirection = Vector3.Normalize(touchDirection);
+            touchDirection = Vector3.Normalize(touchDirection) * Mathf.Lerp(0, 1, touchDirection.magnitude / MovementThreshold); ;
+
         }
         else if(Input.GetMouseButtonUp(0))
         {
