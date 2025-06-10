@@ -10,10 +10,10 @@ public static class NullCheck
         if (obj == null)
         {
             LogNull<T>();
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     [Conditional("UNITY_EDITOR")]

@@ -10,8 +10,6 @@ public class BoundaryController : MonoBehaviour
     [SerializeField]
     private float offset = 1f;
 
-    private enum BoundaryName { [Description("Up")]UP = 0, [Description("Down")]DOWN = 1, [Description("Left")]LEFT = 2, [Description("Right")]RIGHT = 3 };
-    private static readonly Vector2[] Direction = { new Vector2(0, 1), new Vector2(0, -1), new Vector2(-1, 0), new Vector2(1, 0) };
     void Start()    // set boundary based on camera
     {
         float vertexExtent = Camera.main.orthographicSize * offset;
@@ -22,10 +20,10 @@ public class BoundaryController : MonoBehaviour
 
         transform.position = center;
 
-        foreach(BoundaryName boundary in System.Enum.GetValues(typeof(BoundaryName)))
+        foreach(Defines.Boundary boundary in System.Enum.GetValues(typeof(Defines.Boundary)))
         {
             string name = boundary.ToDescription();
-            Vector2 direction = Direction[(int)boundary];
+            Vector2 direction = Defines.Direction[(int)boundary];
             
             Transform targetTransform = transform.Find(name);
             if (targetTransform == null) // if not exist, create
@@ -38,13 +36,13 @@ public class BoundaryController : MonoBehaviour
             GameObject target = targetTransform.gameObject;
             target.tag = gameObject.tag;
             target.layer = gameObject.layer;
-            BoxCollider2D collider = target.GetOrAddComponent<BoxCollider2D>();
 
             // set position, collider size
             target.transform.position = new Vector3(
                 horizontalExtent * direction.x + direction.x * 0.5f, 
                 vertexExtent * direction.y + direction.y * 0.5f, 0);
 
+            BoxCollider2D collider = target.GetOrAddComponent<BoxCollider2D>();
             collider.size = new Vector2(
                 Mathf.Max(1f, size.x * Mathf.Abs(direction.y)),
                 Mathf.Max(1f, size.y * Mathf.Abs(direction.x)));

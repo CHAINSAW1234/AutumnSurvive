@@ -6,11 +6,11 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour
 {
     private Vector2 direction = Vector2.zero;
-    private float moveSpeed = 10f;
+    private float moveSpeed = 7f;
 
     private const float Radius = 1f;
 
-    void Start()
+    void OnEnable()
     {
         Transform player = GameObject.FindWithTag("Player").transform;
         
@@ -20,7 +20,6 @@ public class MonsterController : MonoBehaviour
         direction = (randomPosition - transform.position).normalized;
 
         transform.up = -direction;
-
     }
 
     void Update()

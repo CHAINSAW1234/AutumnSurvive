@@ -10,13 +10,14 @@ public class ItemController : MonoBehaviour
     private int reflectCount = 0;
 
 	private SpriteRenderer skillSprite;
-	private Define.Skill skill;
+	private Defines.Skill skill;
 
     private const int MaxReflectCount = 5;
 
-	void Start()
+	void OnEnable()
 	{
-        direction = GenerateRandom.GenerateRandomDirection(new Vector2(0, -1), 30, 60);
+        reflectCount = 0;
+        direction = GenerateRandom.GenerateRandomDirection(new Vector2(0, -1), 10, 50);
 
     }
 

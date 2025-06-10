@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading;
+using UnityEngine;
 
 public class ResourceManager
 {
@@ -30,7 +31,6 @@ public class ResourceManager
     public GameObject Instantiate(string path, Transform parent = null)
     {
         GameObject prefab = Load<GameObject>($"Prefabs/{path}");
-
         if (NullCheck.Invoke(prefab))
         {
             return null;
@@ -46,6 +46,23 @@ public class ResourceManager
         return obj;
     }
 
+    public GameObject Instantiate(string path, Vector3 position)
+    {
+        GameObject prefab = Load<GameObject>($"Prefabs/{path}");
+        if (NullCheck.Invoke(prefab))
+        {
+            return null;
+        }
+
+        if (prefab.GetComponent<Poolable>())
+        {
+            return Managers.Pool.Dequeue(prefab, position).gameObject;
+        }
+
+        GameObject obj = Object.Instantiate(prefab, position, Quaternion.identity);
+        obj.name = prefab.name;
+        return obj;
+    }
     public void Destroy(GameObject obj)
     {
         if (obj == null)

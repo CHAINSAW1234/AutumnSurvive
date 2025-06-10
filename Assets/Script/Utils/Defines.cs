@@ -1,6 +1,7 @@
-﻿using System.Numerics;
+﻿using System.ComponentModel;
+using UnityEngine;
 
-namespace Define
+public static class Defines
 {
     public enum Skill
     {
@@ -8,11 +9,19 @@ namespace Define
         END
     }
 
+    public enum Boundary 
+    {
+        [Description("Up")] UP = 0,
+        [Description("Down")] DOWN = 1,
+        [Description("Left")] LEFT = 2,
+        [Description("Right")] RIGHT = 3
+    };
 
-}
 
-public static class Definitions
-{
+    public static readonly Vector2[] Direction = 
+        { new Vector2(0, 1), new Vector2(0, -1), new Vector2(-1, 0), new Vector2(1, 0) };
+
+
     public const int Inf = int.MaxValue;
     public const float Infinity = float.MaxValue;
 } 

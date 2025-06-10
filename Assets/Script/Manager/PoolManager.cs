@@ -53,11 +53,28 @@ public class PoolManager
                 poolable.name = Original.name;
             }
 
-            if(transform != null)
-            {
-                poolable.transform.parent = transform;
-            }
+            poolable.transform.parent = transform;
             poolable.gameObject.SetActive(true);
+
+            return poolable;
+        }
+
+        public Poolable Dequeue(Vector3 position)
+        {
+            Poolable poolable;
+            if (poolQueue.Count > 0)
+            {
+                poolable = poolQueue.Dequeue();
+            }
+            else
+            {
+                poolable = Create();
+                poolable.name = Original.name;
+            }
+
+            poolable.transform.position = position;
+            poolable.gameObject.SetActive(true);
+
             return poolable;
         }
 
@@ -151,6 +168,39 @@ public class PoolManager
 
         return poolDict[original.name].Dequeue(transform);
     }
+
+    public Poolable Dequeue(string name, Vector3 position)
+    {
+        if (!poolDict.ContainsKey(name))
+        {
+            GameObject prefab = Managers.Resource.Load<GameObject>(name);
+            if (prefab != null)
+            {
+                Debug.LogWarning("MapObjectPool : Prefab Load Error");
+                return null;
+            }
+
+            CreatePool(prefab);
+        }
+
+        return poolDict[name].Dequeue(position);
+    }
+
+    public Poolable Dequeue(GameObject original, Vector3 position)
+    {
+        if (original == null)
+        {
+            return null;
+        }
+
+        if (!poolDict.ContainsKey(original.name))
+        {
+            CreatePool(original);
+        }
+
+        return poolDict[original.name].Dequeue(position);
+    }
+
 
     public GameObject GetOriginal(string name)
     {
