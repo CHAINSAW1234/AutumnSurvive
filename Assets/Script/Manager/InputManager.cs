@@ -68,5 +68,10 @@ public class InputManager
             Actions.Invoke();
         }
     }
+
+    public void Clear()
+    {
+        Actions = null;    
+    }
 }
 

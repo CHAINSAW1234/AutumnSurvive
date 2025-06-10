@@ -5,22 +5,24 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-	private Vector2 moveDirection = Vector2.zero;
+	private Vector2 direction = Vector2.zero;
 	private float moveSpeed = 5f;
+    private int reflectCount = 0;
 
 	private SpriteRenderer skillSprite;
-
 	private Define.Skill skill;
+
+    private const int MaxReflectCount = 5;
 
 	void Start()
 	{
-        moveDirection = GenerateRandom.GenerateRandomDirection(new Vector2(0, -1), 30, 60);
+        direction = GenerateRandom.GenerateRandomDirection(new Vector2(0, -1), 30, 60);
 
     }
 
 	void Update()
 	{
-		transform.position = transform.position + new Vector3(moveDirection.x, moveDirection.y, 0) * Time.deltaTime * moveSpeed;
+		transform.position = transform.position + new Vector3(direction.x, direction.y, 0) * Time.deltaTime * moveSpeed;
 	}
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -37,14 +39,28 @@ public class ItemController : MonoBehaviour
 
     private void CollisionBoundary(Collision2D collision)
     {
+        if(!Utils.IsInCamera(Camera.main, transform.position))
+        {
+            return;
+        }
+
         ContactPoint2D contactPoint = collision.GetContact(0);
 		Vector2 normal = contactPoint.normal;
-		Vector2 reflect = Vector2.Reflect(moveDirection, normal);
-		moveDirection = reflect;
+		Vector2 reflect = Vector2.Reflect(direction, normal);
+		direction = reflect;
+
+        ++reflectCount;
+        if(reflectCount >= MaxReflectCount)
+        {
+            Managers.Resource.Destroy(gameObject);
+        }
     }
 
     private void CollisionPlayer()
     {
-		Destroy(gameObject);
+		Managers.Resource.Destroy(gameObject);
+        // create Skill
     }
+
+
 }

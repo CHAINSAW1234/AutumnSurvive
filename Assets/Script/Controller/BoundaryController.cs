@@ -38,12 +38,7 @@ public class BoundaryController : MonoBehaviour
             GameObject target = targetTransform.gameObject;
             target.tag = gameObject.tag;
             target.layer = gameObject.layer;
-
-            BoxCollider2D collider = target.GetComponent<BoxCollider2D>();
-            if (collider == null) // if not exist, create
-            {
-                collider = target.AddComponent<BoxCollider2D>();
-            }
+            BoxCollider2D collider = target.GetOrAddComponent<BoxCollider2D>();
 
             // set position, collider size
             target.transform.position = new Vector3(

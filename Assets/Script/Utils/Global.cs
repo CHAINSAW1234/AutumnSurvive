@@ -24,25 +24,6 @@ public static class NullCheck
 
 }
 
-public static class GlobalEnum
-{
-    public static string ToDescription(this Enum source)
-    {
-        FieldInfo info = source.GetType().GetField(source.ToString());
-
-        var attribute = (DescriptionAttribute)info.GetCustomAttribute(typeof(DescriptionAttribute), false);
-
-        if(attribute != null)
-        {
-            return attribute.Description;
-        }
-        else
-        {
-            return source.ToString();
-        }
-    }
-}
-
 public static class GenerateRandom
 {
     public static Vector2 GenerateRandomDirection(Vector2 direction, float minDegree, float maxDegree)
