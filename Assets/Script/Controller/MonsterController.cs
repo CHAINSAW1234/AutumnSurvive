@@ -31,30 +31,15 @@ public class MonsterController : MonoBehaviour
     {
         switch (collision.transform.tag)
         {
-            case "Player":
-                CollisionPlayer();
-                break;
             case "Boundary":
-                CollisionBoundary();
-                break;
             case "Skill":
-                CollisionSkill();
+                CollisionDestroy();
                 break;
         }
     }
 
-    private void CollisionSkill()
+    private void CollisionDestroy()
     {
         Managers.Resource.Destroy(gameObject);
-    }
-
-    private void CollisionBoundary()
-    {
-        Managers.Resource.Destroy(gameObject);
-    }
-
-    private void CollisionPlayer()
-    {
-        //FinishGame
     }
 }

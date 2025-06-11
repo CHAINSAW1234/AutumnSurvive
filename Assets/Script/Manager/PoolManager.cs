@@ -35,7 +35,7 @@ public class PoolManager
                 return;
             }
 
-            poolable.transform.parent = Root.transform;
+            poolable.transform.SetParent(Root);
             poolable.gameObject.SetActive(false);
 
             poolQueue.Enqueue(poolable);
@@ -72,6 +72,7 @@ public class PoolManager
                 poolable.name = Original.name;
             }
 
+            poolable.transform.parent = null;
             poolable.transform.position = position;
             poolable.gameObject.SetActive(true);
 

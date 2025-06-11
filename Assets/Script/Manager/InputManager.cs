@@ -3,18 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class InputManager
 {
     public Action Actions = null;
 
-    public Vector3 TouchStartPosition { get => touchStartPosition; }
-    public Vector3 TouchDirection { get => touchDirection; }
+    public Vector3 TouchStartPosition { get; private set; } = Vector3.zero;
+    public Vector3 TouchDirection { get; private set; } = Vector3.zero;
 
-    private Vector3 touchStartPosition = Vector3.zero;
-    private Vector3 touchDirection = Vector3.zero;
-
+    public float TouchDirectionMagnitude { get; private set; } = 0f;
+    
     private const float MovementThreshold = 150f;
     public void Update()
     {
@@ -33,33 +30,37 @@ public class InputManager
 
             if(touch.phase == TouchPhase.Began)
             {
-                touchStartPosition = touch.position;
+                TouchStartPosition = touch.position;
             }
             else if(touch.phase == TouchPhase.Moved)
             {
-                touchDirection = new Vector3(touch.position.x - touchStartPosition.x , touch.position.y - touchStartPosition.y, 0);
-                touchDirection = Vector3.Normalize(touchDirection) * Mathf.Lerp(0,1, touchDirection.magnitude / MovementThreshold);
+                TouchDirection = new Vector3(touch.position.x - TouchStartPosition.x , touch.position.y - TouchStartPosition.y, 0);
+                TouchDirectionMagnitude = Mathf.Lerp(0, 1, TouchDirection.magnitude / MovementThreshold);
+                TouchDirection = Vector3.Normalize(TouchDirection);
             }
             else if(touch.phase == TouchPhase.Ended)
             {
-                touchStartPosition = touchDirection = Vector3.zero;
+                TouchStartPosition = TouchDirection = Vector3.zero;
+                TouchDirectionMagnitude = 0;
             }
         }
 
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
-            touchStartPosition = Input.mousePosition;
+            TouchStartPosition = Input.mousePosition;
         }
         else if(Input.GetMouseButton(0))
         {
-            touchDirection = new Vector3(Input.mousePosition.x - touchStartPosition.x, Input.mousePosition.y - touchStartPosition.y, 0);
-            touchDirection = Vector3.Normalize(touchDirection) * Mathf.Lerp(0, 1, touchDirection.magnitude / MovementThreshold); ;
+            TouchDirection = new Vector3(Input.mousePosition.x - TouchStartPosition.x, Input.mousePosition.y - TouchStartPosition.y, 0);
+            TouchDirectionMagnitude = Mathf.Lerp(0, 1, TouchDirection.magnitude / MovementThreshold);
+            TouchDirection = Vector3.Normalize(TouchDirection);
 
         }
         else if(Input.GetMouseButtonUp(0))
         {
-            touchStartPosition = touchDirection = Vector3.zero;
+            TouchStartPosition = TouchDirection = Vector3.zero;
+            TouchDirectionMagnitude = 0;
         }
 #endif
 

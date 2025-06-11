@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
             }
 			transform.localScale = localScale;
 
-            Position = transform.position + Managers.Input.TouchDirection * moveSpeed * Time.deltaTime;
+            Position = transform.position + Managers.Input.TouchDirection * Managers.Input.TouchDirectionMagnitude * moveSpeed * Time.deltaTime;
             animator.SetBool("Walk", true);
         }
 		else
@@ -60,4 +60,15 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Walk", false);
         }
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch(collision.gameObject.tag)
+        {
+            case "Monster":
+                // Finish Game
+                break;
+
+        }
+    }
 }
