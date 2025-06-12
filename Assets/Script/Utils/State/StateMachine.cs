@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEditor.VersionControl.Asset;
 
 public class StateMachine
 {
@@ -20,6 +21,16 @@ public class StateMachine
         states[stateType] = state;
 
         return state;
+    }
+
+    public T GetState<T>(Defines.State stateType) where T : State
+    {
+        if (states.ContainsKey(stateType) && states[stateType] is T)
+        {
+            return states[stateType] as T;
+        }
+
+        return null;
     }
 
     public void ChangeState(Defines.State stateType)

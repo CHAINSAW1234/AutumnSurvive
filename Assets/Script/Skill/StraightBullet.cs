@@ -22,7 +22,7 @@ public class StraightBullet : SkillController
     {
         base.OnEnable();
         State = Defines.State.Follow;
-        coroutine = StartCoroutine(Straight());
+        coroutine = StartCoroutine(GenerateBullet());
     }
 
     protected override void OnDisable()
@@ -31,7 +31,8 @@ public class StraightBullet : SkillController
         StopCoroutine(coroutine);
         coroutine = null;
     }
-    private IEnumerator Straight()
+
+    private IEnumerator GenerateBullet()
     {
         Vector2 direction = new Vector2(0, 1f);
         for (int i = 0; i < createCount; ++i)

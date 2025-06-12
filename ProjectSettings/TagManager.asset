@@ -10,7 +10,6 @@ TagManager:
   - Skill
   - Bullet
   - Explosion
-  - Player_Fall
   layers:
   - Default
   - TransparentFX

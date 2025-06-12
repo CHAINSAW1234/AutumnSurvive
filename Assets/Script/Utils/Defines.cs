@@ -5,6 +5,7 @@ public static class Defines
 {
     public enum State
     {
+        Chase,
         Appear,
         Follow,
         Wait,

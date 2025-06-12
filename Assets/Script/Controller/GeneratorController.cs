@@ -23,7 +23,7 @@ public class GeneratorController : MonoBehaviour
     private const float sizeBias = 0.9f;
     void Start()
     {
-        if(GeneratingTargetObject == null)
+        if(Utils.NullCheck(GeneratingTargetObject))
         {
             Managers.Resource.Destroy(gameObject);
             return;

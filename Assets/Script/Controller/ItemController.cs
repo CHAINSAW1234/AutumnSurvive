@@ -17,7 +17,7 @@ public class ItemController : MonoBehaviour
 	void OnEnable()
 	{
         reflectCount = 0;
-        direction = GenerateRandom.GenerateRandomDirection(new Vector2(0, -1), 10, 50);
+        direction = Utils.GetRandomDirection(new Vector2(0, -1), 10, 50);
 
     }
 

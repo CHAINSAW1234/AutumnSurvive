@@ -22,7 +22,7 @@ public class SpreadBullet : SkillController
     {
         base.OnEnable();
         State = Defines.State.Follow;
-        coroutine = StartCoroutine(Spread());
+        coroutine = StartCoroutine(GenerateBullet());
     }
 
     protected override void OnDisable()
@@ -31,9 +31,9 @@ public class SpreadBullet : SkillController
         StopCoroutine(coroutine);
         coroutine = null;
     }
-    private IEnumerator Spread()
+    private IEnumerator GenerateBullet()
     {
-        Vector2 direction = GenerateRandom.GenerateRandomDirection(new Vector2(0, 1f), 0, 180);
+        Vector2 direction = Utils.GetRandomDirection(new Vector2(0, 1f), 0, 180);
         for (int i = 0; i < createCount; ++i)
         {
             Quaternion rotation = Quaternion.AngleAxis(RotationDegree, Vector3.forward);
