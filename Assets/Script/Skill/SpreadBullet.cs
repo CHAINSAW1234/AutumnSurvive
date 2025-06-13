@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class SpreadBullet : SkillController
 {
-    private int createCount = 15;
     private Coroutine coroutine = null;
 
     private const float GenerateDelay = 0.1f;
-    private const int RotationDegree = 25;
+    private const int RotationDegree = -25;
     protected override void Awake()
     {
         base.Awake();
@@ -15,7 +14,7 @@ public class SpreadBullet : SkillController
 
         stateMachine.RegisterState<StateSkillFollow>(Defines.State.Follow, this);
         Direction = new Vector2(0f, 1f);
-        createCount = 30;
+        CreateCount = 30;
     }
 
     protected override void OnEnable()
@@ -34,7 +33,7 @@ public class SpreadBullet : SkillController
     private IEnumerator GenerateBullet()
     {
         Vector2 direction = Utils.GetRandomDirection(new Vector2(0, 1f), 0, 180);
-        for (int i = 0; i < createCount; ++i)
+        for (int i = 0; i < CreateCount; ++i)
         {
             Quaternion rotation = Quaternion.AngleAxis(RotationDegree, Vector3.forward);
             direction = rotation * direction;

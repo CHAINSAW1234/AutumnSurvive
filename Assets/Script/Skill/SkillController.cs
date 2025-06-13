@@ -7,13 +7,16 @@ using UnityEngine.UIElements;
 
 public abstract class SkillController : MonoBehaviour
 {
-    protected Defines.Skill skill;
     protected StateMachine stateMachine = new StateMachine();
-
     public Transform Player { get; protected set; } = null;
+
+    public Defines.Skill skill;
+
     public float MoveSpeed { get; protected set; }
     public Vector2 Direction { get; protected set; }  = Vector2.zero;
     public float Duration { get; protected set; } = Defines.Infinity;
+
+    public int CreateCount { get; protected set; } = 0;
     public Defines.State State
     {
         get { return stateMachine.CurStateType; }

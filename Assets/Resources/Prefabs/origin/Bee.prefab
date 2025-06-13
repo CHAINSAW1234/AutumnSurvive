@@ -261,7 +261,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4325721936988985373}
-  - component: {fileID: 6033766430414848690}
   - component: {fileID: 2550520546709259228}
   - component: {fileID: 303575306904037172}
   - component: {fileID: 1597059896432463888}
@@ -297,27 +296,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.88, y: 0.88}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!50 &6033766430414848690
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5459666180593031190}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &2550520546709259228
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -374,7 +352,7 @@ SortingGroup:
   m_GameObject: {fileID: 5459666180593031190}
   m_Enabled: 1
   m_SortingLayerID: 505372863
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!1 &7420559734327722078
 GameObject:

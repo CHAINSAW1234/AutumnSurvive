@@ -6,7 +6,6 @@ public class ShieldBee : SkillController
 {
     [SerializeField]
     private GameObject[] flys;
-    private int createCount = 8;
 
     private const int MaxFlysCount = 8; // this is for check prefab
     protected override void Awake()
@@ -21,17 +20,18 @@ public class ShieldBee : SkillController
             Debug.Log("ShieldFly Prefab's list is not filled");
         }
 
-        skill = Defines.Skill.ShelidBee;
+        skill = Defines.Skill.ShieldBee;
         Direction = new Vector2(0f, 1f);
-        //createCount = // from gameManager;
-        Duration = 55;  // from Script
+        CreateCount = 8;
+        Duration = 5.5f;  // from Script
+        MoveSpeed = 10f;
 
-        for (int i = 0; i < createCount; ++i)
+        for (int i = 0; i < CreateCount; ++i)
         {
             flys[i].SetActive(true);
         }
 
-        for (int i = createCount; i < flys.Length; ++i)
+        for (int i = CreateCount; i < flys.Length; ++i)
         {
             flys[i].SetActive(false);
         }

@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using static Defines;
-using static UnityEngine.GraphicsBuffer;
 
 public class GeneratorController : MonoBehaviour
 {
@@ -11,9 +10,9 @@ public class GeneratorController : MonoBehaviour
     [SerializeField]
     private float offset = 1f;
     [SerializeField]
-    private Defines.Boundary boundary;
+    private Boundary boundary;
     [SerializeField]
-    private int maxCount = Defines.Inf;
+    private int maxCount = Inf;
     [SerializeField]
     private float generateDelay = 0.1f;
 
@@ -37,6 +36,7 @@ public class GeneratorController : MonoBehaviour
     void Update()
     {
     }
+
     private void SetupGeneratePosition()
     {
         float vertexExtent = Camera.main.orthographicSize * offset;
@@ -65,13 +65,9 @@ public class GeneratorController : MonoBehaviour
             else
             {
                 Generate();
-
                 yield return new WaitForSeconds(generateDelay);
             }
-
-
         }
-
     }
 
     private void Generate()
@@ -93,5 +89,4 @@ public class GeneratorController : MonoBehaviour
     {
         objectCount -= 1;
     }
-
 }

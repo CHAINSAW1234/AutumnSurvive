@@ -8,7 +8,7 @@ public class ButterflyExplosion : SkillController
         stateMachine.RegisterState<StateSkillAppear>(Defines.State.Appear, this);
         stateMachine.RegisterState<StateSkillWait>(Defines.State.Wait, this);
         stateMachine.RegisterState<StateSkillDisappear>(Defines.State.Disappear, this);
-        Duration = 75;
+        Duration = 7.5f;
     }
 
     protected override void OnEnable()

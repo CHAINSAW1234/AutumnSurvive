@@ -20,9 +20,9 @@ public class PoolManager
             }
         }
 
-        public Poolable Create()
+        public Poolable Create(Vector3 position = default)
         {
-            GameObject obj = Object.Instantiate(Original);
+            GameObject obj = Object.Instantiate(Original, position, Quaternion.identity);
             obj.name = Original.name;
 
             return obj.GetOrAddComponent<Poolable>();
@@ -65,15 +65,15 @@ public class PoolManager
             if (poolQueue.Count > 0)
             {
                 poolable = poolQueue.Dequeue();
+                poolable.transform.parent = null;
+                poolable.transform.position = position;
             }
             else
             {
-                poolable = Create();
+                poolable = Create(position);
                 poolable.name = Original.name;
             }
 
-            poolable.transform.parent = null;
-            poolable.transform.position = position;
             poolable.gameObject.SetActive(true);
 
             return poolable;
@@ -138,23 +138,6 @@ public class PoolManager
         poolDict[obj.name].Enqueue(obj);
     }
 
-    public Poolable Dequeue(string name, Transform transform = null)
-    {
-        if (!poolDict.ContainsKey(name))
-        {
-            GameObject prefab = Managers.Resource.Load<GameObject>(name);
-            if (prefab != null)
-            {
-                Debug.LogWarning("MapObjectPool : Prefab Load Error");
-                return null;
-            }
-
-            CreatePool(prefab);
-        }
-
-        return poolDict[name].Dequeue(transform);
-    }
-
     public Poolable Dequeue(GameObject original, Transform transform = null)
     {
         if (original == null)
@@ -168,23 +151,6 @@ public class PoolManager
         }
 
         return poolDict[original.name].Dequeue(transform);
-    }
-
-    public Poolable Dequeue(string name, Vector3 position)
-    {
-        if (!poolDict.ContainsKey(name))
-        {
-            GameObject prefab = Managers.Resource.Load<GameObject>(name);
-            if (prefab != null)
-            {
-                Debug.LogWarning("MapObjectPool : Prefab Load Error");
-                return null;
-            }
-
-            CreatePool(prefab);
-        }
-
-        return poolDict[name].Dequeue(position);
     }
 
     public Poolable Dequeue(GameObject original, Vector3 position)

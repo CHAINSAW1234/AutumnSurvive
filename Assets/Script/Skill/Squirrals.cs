@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class Squirrals : SkillController
 {
-    private int createCount = 6;
     protected override void Awake()
     {
         base.Awake();
-        skill = Defines.Skill.Squirral;
-
+        skill = Defines.Skill.Squirrals;
+        CreateCount = 6;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Enemy");
-        List<GameObject> randomMosters = Utils.GetRandomUnique(monsters, createCount);
+        List<GameObject> randomMosters = Utils.GetRandomUnique(monsters, CreateCount);
 
-        for (int i = 0; i < createCount; ++i)
+        for (int i = 0; i < randomMosters.Count; ++i)
         {
-            if (randomMosters.Count == 0)
-                break;
-
             GameObject obj = Managers.Resource.Instantiate("Squirral", transform.position);
-            obj.GetOrAddComponent<Squirral>().SetTarget(randomMosters[i % randomMosters.Count].transform);
+            obj.GetOrAddComponent<Squirral>().SetTarget(randomMosters[i].transform);
         }
 
         Managers.Resource.Destroy(gameObject);
@@ -36,7 +32,7 @@ public class Squirrals : SkillController
         protected override void Awake()
         {
             base.Awake();
-            skill = Defines.Skill.Squirral;
+            skill = Defines.Skill.Squirrals;
             scale = transform.localScale;
             stateMachine.RegisterState<StateSkillChase>(Defines.State.Chase, this);
             transform.localScale = transform.localScale * 3;
@@ -45,7 +41,7 @@ public class Squirrals : SkillController
             stateMachine.RegisterState<StateSkillDisappear>(Defines.State.Disappear, this);
             transform.localScale = transform.localScale / 3;
 
-            Duration = 22;
+            Duration = 2.2f;
             MoveSpeed = 5f;
         }
         protected override void OnEnable()

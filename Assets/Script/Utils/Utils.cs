@@ -59,6 +59,20 @@ public static class Utils
             return source.ToString();
         }
     }
+   
+    #region Random
+    public static T GetRandomEnumValue<T>() where T : Enum
+    {
+        Array values = Enum.GetValues(typeof(T));
+        int randomIndex = UnityEngine.Random.Range(0, values.Length);
+        return (T)values.GetValue(randomIndex);
+    }
+    public static T GetRandomEnumValue<T>(this T _) where T : Enum
+    {
+        Array values = Enum.GetValues(typeof(T));
+        int randomIndex = UnityEngine.Random.Range(0, values.Length);
+        return (T)values.GetValue(randomIndex);
+    }
 
     public static Vector2 GetRandomDirection(Vector2 direction, float minDegree, float maxDegree)
     {
@@ -86,7 +100,7 @@ public static class Utils
         int selectNum = Mathf.Min(count, list.Count);
         return list.GetRange(0, selectNum);
     }
-
+    #endregion
 
     [Conditional("UNITY_EDITOR")]
     private static void LogNull<T>()

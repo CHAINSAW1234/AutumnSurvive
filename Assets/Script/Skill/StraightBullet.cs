@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class StraightBullet : SkillController
 {
-    private int createCount = 15;
     private Coroutine coroutine = null;
 
+    private const float MagnitudeBias = 0.1f;
     private const float GenerateDelay = 0.1f;
-    private const int RotationDegree = 25;
+
     protected override void Awake()
     {
         base.Awake();
@@ -15,7 +15,7 @@ public class StraightBullet : SkillController
 
         stateMachine.RegisterState<StateSkillFollow>(Defines.State.Follow, this);
         Direction = new Vector2(0f, 1f);
-        createCount = 30;
+        CreateCount = 30;
     }
 
     protected override void OnEnable()
@@ -35,7 +35,7 @@ public class StraightBullet : SkillController
     private IEnumerator GenerateBullet()
     {
         Vector2 direction = new Vector2(0, 1f);
-        for (int i = 0; i < createCount; ++i)
+        for (int i = 0; i < CreateCount; ++i)
         {
             if(Managers.Input.TouchDirection != Vector3.zero)
             {
@@ -45,7 +45,7 @@ public class StraightBullet : SkillController
             GameObject bullet = Managers.Resource.Instantiate("Bullet", transform.position);
             BulletController bulletController = bullet.GetOrAddComponent<BulletController>();
             bulletController.Direction = direction;
-            bulletController.MoveSpeed = Mathf.Max(0.1f, Managers.Input.TouchDirectionMagnitude) * bulletController.MoveSpeed;
+            bulletController.MoveSpeed = Mathf.Max(0.1f, Managers.Input.TouchDirectionMagnitude) * bulletController.MoveSpeed + MagnitudeBias;
 
             yield return new WaitForSeconds(GenerateDelay);
         }

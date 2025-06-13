@@ -6,7 +6,6 @@ public class StraightBee : SkillController
 {
     [SerializeField]
     private GameObject[] flys;
-    private int createCount = 7;
 
     private const int FlysCount = 7;  // this is for check prefab
     protected override void Awake()
@@ -21,28 +20,29 @@ public class StraightBee : SkillController
 
         skill = Defines.Skill.StraightBee;
         Direction = new Vector2(0f, 1f);
+        CreateCount = 7;
+        MoveSpeed = 10f;
         //createCount = // from gameManager;
 
-        for (int i = 0; i < createCount; ++i)
+        for (int i = 0; i < CreateCount; ++i)
         {
             flys[i].SetActive(true);
         }
 
-        for (int i = createCount; i < flys.Length; ++i)
+        for (int i = CreateCount; i < flys.Length; ++i)
         {
             flys[i].SetActive(false);
         }
-
-        float vertexExtent = Camera.main.orthographicSize;
-        float horizontalExtent = vertexExtent * Screen.width / Screen.height;
-
-        gameObject.transform.position = new Vector3(0, -vertexExtent - 0.5f, 0);
     }
     protected override void OnEnable()
     {
         base.OnEnable();
      
         State = Defines.State.Move;
+
+        float vertexExtent = Camera.main.orthographicSize;
+        float horizontalExtent = vertexExtent * Screen.width / Screen.height;
+        gameObject.transform.position = new Vector3(0, -vertexExtent - 0.5f, 0);
     }
 
     protected override void Update()
