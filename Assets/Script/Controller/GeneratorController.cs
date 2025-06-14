@@ -5,7 +5,7 @@ using static Defines;
 public class GeneratorController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject GeneratingTargetObject = null;
+    private GameObject generatingTargetObject = null;
 
     [SerializeField]
     private float offset = 1f;
@@ -22,7 +22,7 @@ public class GeneratorController : MonoBehaviour
     private const float sizeBias = 0.9f;
     void Start()
     {
-        if(Utils.NullCheck(GeneratingTargetObject))
+        if(generatingTargetObject == null)
         {
             Managers.Resource.Destroy(gameObject);
             return;
@@ -77,7 +77,7 @@ public class GeneratorController : MonoBehaviour
                 Random.Range(-generatorSize.x / 2, generatorSize.x / 2),
                 Random.Range(-generatorSize.y / 2, generatorSize.y / 2), 0);
 
-        GameObject obj = Managers.Resource.Instantiate(GeneratingTargetObject.name, transform.position + randomPos);
+        GameObject obj = Managers.Resource.Instantiate(generatingTargetObject.name, transform.position + randomPos);
 
         AutoActions autoActions = obj.GetOrAddComponent<AutoActions>();
         autoActions.OnDisableEvent -= GeneratedObjectOnDisable;

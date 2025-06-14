@@ -8,11 +8,14 @@ public class Managers : MonoBehaviour
     private InputManager inputManager = new InputManager();
     private ResourceManager resourceManager = new ResourceManager();
     private PoolManager poolManager = new PoolManager();
+    private DataManager dataManager = new DataManager();
+
     private static Managers Instance { get { Init(); return s_Instance; } }
     public static InputManager Input { get { return  Instance.inputManager; } }
     public static ResourceManager Resource {  get { return Instance.resourceManager; } }
     public static PoolManager Pool {  get { return Instance.poolManager; } }
-    
+    public static DataManager Data {  get { return Instance.dataManager; } }
+
     private static void Init()
     {
         if(s_Instance == null)
@@ -31,6 +34,7 @@ public class Managers : MonoBehaviour
     private void InitManagers()
     {
         Pool.Init(gameObject.transform);
+        Data.Init();
     }
 
     void Update()

@@ -31,7 +31,7 @@ public class ResourceManager
     public GameObject Instantiate(string path, Transform parent = null)
     {
         GameObject prefab = Load<GameObject>($"Prefabs/{path}");
-        if (Utils.NullCheck(prefab))
+        if (prefab == null)
         {
             return null;
         }
@@ -49,7 +49,7 @@ public class ResourceManager
     public GameObject Instantiate(string path, Vector3 position)
     {
         GameObject prefab = Load<GameObject>($"Prefabs/{path}");
-        if (Utils.NullCheck(prefab))
+        if (prefab == null)
         {
             return null;
         }

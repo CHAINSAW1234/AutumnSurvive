@@ -64,7 +64,7 @@ public class InputManager
         }
 #endif
 
-        if (!Utils.NullCheck(Actions))
+        if (Actions != null)
         {
             Actions.Invoke();
         }

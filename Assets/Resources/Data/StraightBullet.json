@@ -1,0 +1,105 @@
+{
+  "Skill": "StraightBullet",
+  "SkillData": [
+    {
+      "level": 1,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 15
+    },
+    {
+      "level": 2,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 17
+    },
+    {
+      "level": 3,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 19
+    },
+    {
+      "level": 4,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 21
+    },
+    {
+      "level": 5,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 23
+    },
+    {
+      "level": 6,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 25
+    },
+    {
+      "level": 7,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 27
+    },
+    {
+      "level": 8,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 28
+    },
+    {
+      "level": 9,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 29
+    },
+    {
+      "level": 10,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 30
+    }
+  ]
+}

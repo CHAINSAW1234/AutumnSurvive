@@ -28,6 +28,7 @@ public abstract class SkillController : MonoBehaviour
         Player = GameObject.FindWithTag("Player").transform;
         stateMachine.RegisterState<StateDefault>(Defines.State.END, this);
         State = Defines.State.END;
+        SetStats();
     }
 
     protected virtual void OnEnable()
@@ -43,6 +44,8 @@ public abstract class SkillController : MonoBehaviour
     {
         State = Defines.State.END;
     }
+
+    protected abstract void SetStats();
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {

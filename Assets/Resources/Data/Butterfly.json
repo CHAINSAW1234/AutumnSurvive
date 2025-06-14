@@ -1,0 +1,55 @@
+{
+  "Skill": "Butterfly",
+  "SkillData": [
+    {
+      "level": 1,
+      "moveSpeed": 10.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,     
+      "createCount": 1
+    },
+    {
+      "level": 2,
+      "moveSpeed": 8.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 1
+    },
+    {
+      "level": 3,
+      "moveSpeed": 7.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 1
+    },
+    {
+      "level": 4,
+      "moveSpeed": 6.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 1
+    },
+    {
+      "level": 5,
+      "moveSpeed": 5.0,
+      "direction": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "duration": -1,
+      "createCount": 1
+    }
+  ]
+}

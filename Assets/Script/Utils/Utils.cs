@@ -7,17 +7,6 @@ using System.Diagnostics;
 
 public static class Utils
 {
-    public static bool NullCheck<T>(T obj) where T : class
-    {
-        if (obj == null)
-        {
-            LogNull<T>();
-            return true;
-        }
-
-        return false;
-    }
-
     public static T GetOrAddComponent<T>(this GameObject obj) where T : UnityEngine.Component
     {
         T component = obj.GetComponent<T>();
@@ -100,11 +89,7 @@ public static class Utils
         int selectNum = Mathf.Min(count, list.Count);
         return list.GetRange(0, selectNum);
     }
+
     #endregion
 
-    [Conditional("UNITY_EDITOR")]
-    private static void LogNull<T>()
-    {
-        UnityEngine.Debug.LogError($"[NullCheck] {typeof(T).Name} is null.");
-    }
 }
