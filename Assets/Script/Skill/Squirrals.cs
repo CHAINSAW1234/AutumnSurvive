@@ -6,9 +6,8 @@ public class Squirrals : SkillController
 {
     protected override void Awake()
     {
-        base.Awake();
         skill = Defines.Skill.Squirrals;
-        CreateCount = 6;
+        base.Awake();
     }
 
     protected override void OnEnable()
@@ -31,8 +30,9 @@ public class Squirrals : SkillController
         private Vector3 scale;
         protected override void Awake()
         {
-            base.Awake();
             skill = Defines.Skill.Squirrals;
+            base.Awake();
+
             scale = transform.localScale;
             stateMachine.RegisterState<StateSkillChase>(Defines.State.Chase, this);
             transform.localScale = transform.localScale * 3;
@@ -40,9 +40,6 @@ public class Squirrals : SkillController
             stateMachine.RegisterState<StateSkillWait>(Defines.State.Wait, this);
             stateMachine.RegisterState<StateSkillDisappear>(Defines.State.Disappear, this);
             transform.localScale = transform.localScale / 3;
-
-            Duration = 2.2f;
-            MoveSpeed = 5f;
         }
         protected override void OnEnable()
         {

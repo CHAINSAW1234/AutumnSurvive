@@ -15,9 +15,9 @@ public static class Defines
     }
     public enum Skill
     {
-        Butterfly, // 벌미사일
         ButterflyExplosion, // 꽃잎 폭탄
         Squirrals, // 유도탄
+        Butterfly, // 벌미사일
         //Beaver, // 콩벌레
         SpreadBullet, // 베이비 버그1
         StraightBullet, // 베이비 버그2

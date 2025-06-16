@@ -1,0 +1,236 @@
+{
+  "LevelData": [
+    {
+      "level": 1,
+      "exp": 80,
+      "skillPoint": false,
+      "skillUnlock": 0
+    },
+    {
+      "level": 2,
+      "exp": 260,
+      "skillPoint": false,
+      "skillUnlock": 1
+    },
+    {
+      "level": 3,
+      "exp": 520,
+      "skillPoint": false,
+      "skillUnlock": 2
+    },
+    {
+      "level": 4,
+      "exp": 880,
+      "skillPoint": true
+    },
+    {
+      "level": 5,
+      "exp": 1360,
+      "skillPoint": false,
+      "skillUnlock": 3
+    },
+    {
+      "level": 6,
+      "exp": 2040,
+      "skillPoint": true
+    },
+    {
+      "level": 7,
+      "exp": 2920,
+      "skillPoint": true
+    },
+    {
+      "level": 8,
+      "exp": 4040,
+      "skillPoint": true
+    },
+    {
+      "level": 9,
+      "exp": 5320,
+      "skillPoint": true
+    },
+    {
+      "level": 10,
+      "exp": 6880,
+      "skillPoint": false,
+      "skillUnlock": 4
+    },
+    {
+      "level": 11,
+      "exp": 8760,
+      "skillPoint": true
+    },
+    {
+      "level": 12,
+      "exp": 11000,
+      "skillPoint": true
+    },
+    {
+      "level": 13,
+      "exp": 13640,
+      "skillPoint": true
+    },
+    {
+      "level": 14,
+      "exp": 16760,
+      "skillPoint": true
+    },
+    {
+      "level": 15,
+      "exp": 20480,
+      "skillPoint": true
+    },
+    {
+      "level": 16,
+      "exp": 24880,
+      "skillPoint": true
+    },
+    {
+      "level": 17,
+      "exp": 30080,
+      "skillPoint": true
+    },
+    {
+      "level": 18,
+      "exp": 36280,
+      "skillPoint": true
+    },
+    {
+      "level": 19,
+      "exp": 43680,
+      "skillPoint": true
+    },
+    {
+      "level": 20,
+      "exp": 52480,
+      "skillPoint": false,
+      "skillUnlock": 5
+    },
+    {
+      "level": 21,
+      "exp": 62960,
+      "skillPoint": true
+    },
+    {
+      "level": 22,
+      "exp": 75440,
+      "skillPoint": true
+    },
+    {
+      "level": 23,
+      "exp": 90200,
+      "skillPoint": true
+    },
+    {
+      "level": 24,
+      "exp": 107600,
+      "skillPoint": true
+    },
+    {
+      "level": 25,
+      "exp": 127880,
+      "skillPoint": true
+    },
+    {
+      "level": 26,
+      "exp": 151360,
+      "skillPoint": true
+    },
+    {
+      "level": 27,
+      "exp": 178400,
+      "skillPoint": true
+    },
+    {
+      "level": 28,
+      "exp": 209360,
+      "skillPoint": true
+    },
+    {
+      "level": 29,
+      "exp": 244640,
+      "skillPoint": true
+    },
+    {
+      "level": 30,
+      "exp": 284680,
+      "skillPoint": true
+    },
+    {
+      "level": 31,
+      "exp": 329960,
+      "skillPoint": true
+    },
+    {
+      "level": 32,
+      "exp": 380960,
+      "skillPoint": false,
+      "skillUnlock": 6
+    },
+    {
+      "level": 33,
+      "exp": 438240,
+      "skillPoint": true
+    },
+    {
+      "level": 34,
+      "exp": 502360,
+      "skillPoint": true
+    },
+    {
+      "level": 35,
+      "exp": 573960,
+      "skillPoint": true
+    },
+    {
+      "level": 36,
+      "exp": 653680,
+      "skillPoint": true
+    },
+    {
+      "level": 37,
+      "exp": 742240,
+      "skillPoint": true
+    },
+    {
+      "level": 38,
+      "exp": 840400,
+      "skillPoint": true
+    },
+    {
+      "level": 39,
+      "exp": 948960,
+      "skillPoint": true
+    },
+    {
+      "level": 40,
+      "exp": 1068800,
+      "skillPoint": true
+    },
+    {
+      "level": 41,
+      "exp": 1200880,
+      "skillPoint": true
+    },
+    {
+      "level": 42,
+      "exp": 1346240,
+      "skillPoint": true
+    },
+    {
+      "level": 43,
+      "exp": 1505960,
+      "skillPoint": true
+    },
+    {
+      "level": 44,
+      "exp": 1681200,
+      "skillPoint": true
+    },
+    {
+      "level": 45,
+      "exp": 0,
+      "skillPoint": true
+    }
+  ]
+}

@@ -10,30 +10,16 @@ public class ShieldBee : SkillController
     private const int MaxFlysCount = 8; // this is for check prefab
     protected override void Awake()
     {
+        skill = Defines.Skill.ShieldBee;
         base.Awake();
+
         StateSkillFollow state = stateMachine.RegisterState<StateSkillFollow>(Defines.State.Follow, this);
         state.WaitAfterAction += () => { State = Defines.State.Move; };
         stateMachine.RegisterState<StateSkillMove>(Defines.State.Move, this);
 
-        if(flys.Length != MaxFlysCount)
+        for (int i = 0; i < flys.Length; ++i)
         {
-            Debug.Log("ShieldFly Prefab's list is not filled");
-        }
-
-        skill = Defines.Skill.ShieldBee;
-        Direction = new Vector2(0f, 1f);
-        CreateCount = 8;
-        Duration = 5.5f;  // from Script
-        MoveSpeed = 10f;
-
-        for (int i = 0; i < CreateCount; ++i)
-        {
-            flys[i].SetActive(true);
-        }
-
-        for (int i = CreateCount; i < flys.Length; ++i)
-        {
-            flys[i].SetActive(false);
+            flys[i].SetActive(i < CreateCount);
         }
     }
     protected override void OnEnable()

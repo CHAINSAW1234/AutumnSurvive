@@ -10,12 +10,10 @@ public class StraightBullet : SkillController
 
     protected override void Awake()
     {
-        base.Awake();
         skill = Defines.Skill.StraightBullet;
+        base.Awake();
 
         stateMachine.RegisterState<StateSkillFollow>(Defines.State.Follow, this);
-        Direction = new Vector2(0f, 1f);
-        CreateCount = 30;
     }
 
     protected override void OnEnable()

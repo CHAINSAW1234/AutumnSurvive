@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Numerics;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using static Defines;
 
 namespace Data
@@ -12,14 +10,13 @@ namespace Data
         public float y;
 
         // Vector2로 변환하고 싶을 경우 추가 메서드
-        public Vector2 ToVector2() => new Vector2(x, y);
+        public UnityEngine.Vector2 ToVector2() => new UnityEngine.Vector2(x, y);
     }
-
 
     #region Skill
 
     [System.Serializable]
-    public struct SkillLevelData
+    public struct SkillLevelInfo
     {
         public int level;
         public float moveSpeed;
@@ -29,24 +26,47 @@ namespace Data
     }
 
     [System.Serializable]
-    public struct SkillDefinition : ILoader<int, SkillLevelData>
+    public struct SkillLevelData
     {
         public Defines.Skill Skill; // not used, but in jsonFile
-        public List<SkillLevelData> SkillData;
-
-        public Dictionary<int, SkillLevelData> MakeDict()
+        public List<SkillLevelInfo> SkillData;
+        
+        public readonly int MaxLevel { get => SkillData.Count; }
+        public readonly SkillLevelInfo? this[int i]
         {
-            Dictionary<int, SkillLevelData> dict = new Dictionary<int, SkillLevelData>();
-
-            foreach (SkillLevelData data in SkillData)  
+            get
             {
-                dict.Add(data.level, data);
+                return SkillData.Find(data => data.level == i);
+            }
+        }
 
-                if (data.duration == -1)
-                {
-                    SkillLevelData skillLevelData = dict[data.level];
-                    skillLevelData.duration = Inf;
-                }
+    }
+
+    #endregion
+
+    #region Level
+
+    [System.Serializable]
+    public struct PlayerLevelInfo
+    {
+        public int level;
+        public int exp;
+        public bool skillPoint;
+        public Defines.Skill skillUnlock;
+    }
+
+    [System.Serializable]
+    public struct PlayerLevelData
+    {
+        public List<PlayerLevelInfo> LevelData;
+
+        public Dictionary<int, PlayerLevelInfo> MakeDict()
+        {
+            Dictionary<int, PlayerLevelInfo> dict = new Dictionary<int, PlayerLevelInfo>();
+
+            foreach(PlayerLevelInfo info in LevelData)
+            {
+                dict.Add(info.level, info);
             }
 
             return dict;

@@ -7,31 +7,16 @@ public class StraightBee : SkillController
     [SerializeField]
     private GameObject[] flys;
 
-    private const int FlysCount = 7;  // this is for check prefab
     protected override void Awake()
     {
+        skill = Defines.Skill.StraightBee;
         base.Awake();
+
         stateMachine.RegisterState<StateSkillMove>(Defines.State.Move, this);
 
-        if(flys.Length != FlysCount)
+        for (int i = 0; i < flys.Length; ++i)
         {
-            Debug.Log("StraightBee Prefab's list is not filled");
-        }
-
-        skill = Defines.Skill.StraightBee;
-        Direction = new Vector2(0f, 1f);
-        CreateCount = 7;
-        MoveSpeed = 10f;
-        //createCount = // from gameManager;
-
-        for (int i = 0; i < CreateCount; ++i)
-        {
-            flys[i].SetActive(true);
-        }
-
-        for (int i = CreateCount; i < flys.Length; ++i)
-        {
-            flys[i].SetActive(false);
+            flys[i].SetActive(i < CreateCount);
         }
     }
     protected override void OnEnable()

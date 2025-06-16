@@ -15,8 +15,8 @@ public abstract class SkillController : MonoBehaviour
     public float MoveSpeed { get; protected set; }
     public Vector2 Direction { get; protected set; }  = Vector2.zero;
     public float Duration { get; protected set; } = Defines.Infinity;
-
     public int CreateCount { get; protected set; } = 0;
+
     public Defines.State State
     {
         get { return stateMachine.CurStateType; }
@@ -28,7 +28,7 @@ public abstract class SkillController : MonoBehaviour
         Player = GameObject.FindWithTag("Player").transform;
         stateMachine.RegisterState<StateDefault>(Defines.State.END, this);
         State = Defines.State.END;
-        SetStats();
+        SetStatsFromData();
     }
 
     protected virtual void OnEnable()
@@ -45,7 +45,17 @@ public abstract class SkillController : MonoBehaviour
         State = Defines.State.END;
     }
 
-    protected abstract void SetStats();
+    protected void SetStatsFromData()
+    {
+        var data = Managers.Data.GetSkillLevelDataHelper(skill, 3);
+        if(data.HasValue)
+        {
+            MoveSpeed = data.Value.moveSpeed;
+            Direction = data.Value.direction.ToVector2();
+            Duration = data.Value.duration/10;
+            CreateCount = data.Value.createCount;
+        }
+    }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
