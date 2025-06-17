@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0daeea87b6fda642bb2e6f9601ee29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolCreateCount: 3
+  poolCreateCount: 1
 --- !u!114 &896216195456415480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5302b6e69262c9747b028922ad8a2b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skill: 0
   flys:
   - {fileID: 1345245183960023675}
   - {fileID: 9043177269341709819}

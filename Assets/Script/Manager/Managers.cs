@@ -7,12 +7,14 @@ public class Managers : MonoBehaviour
     private static Managers s_Instance;
     private InputManager inputManager = new InputManager();
     private ResourceManager resourceManager = new ResourceManager();
+    private SoundManager soundManager = new SoundManager();
     private DataManager dataManager = new DataManager();
     private PoolManager poolManager = new PoolManager();
 
     private static Managers Instance { get { Init(); return s_Instance; } }
     public static InputManager Input { get { return  Instance.inputManager; } }
     public static ResourceManager Resource {  get { return Instance.resourceManager; } }
+    public static SoundManager Sound { get { return Instance.soundManager; } }
     public static DataManager Data { get { return Instance.dataManager; } }
     public static PoolManager Pool {  get { return Instance.poolManager; } }
 
@@ -33,6 +35,7 @@ public class Managers : MonoBehaviour
     }
     private void InitManagers()
     {
+        Sound.Init(gameObject.transform);
         Data.Init();
         Pool.Init(gameObject.transform);
     }
@@ -45,6 +48,7 @@ public class Managers : MonoBehaviour
     void Clear()
     {
         Input.Clear();
+        Sound.Clear();
         Data.Clear();
         Pool.Clear();
 

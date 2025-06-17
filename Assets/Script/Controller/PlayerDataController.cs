@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerDataController : MonoBehaviour
 {
-    private static PlayerDataController s_Instance;
+    private static PlayerDataController s_Instance = null;
     public static PlayerDataController Instance { get { Init(); return s_Instance; } }
     private static void Init()
     {
@@ -21,6 +21,7 @@ public class PlayerDataController : MonoBehaviour
             }
             DontDestroyOnLoad(gameObject);
             s_Instance = gameObject.GetComponent<PlayerDataController>();
+            s_Instance.LoadAllPlayerData();
         }
     }
 
@@ -28,18 +29,20 @@ public class PlayerDataController : MonoBehaviour
     private int currentExp;
     private int totalSkillPoint;
     private int leftSkillPoint;
-    private readonly List<int> skillLevels = new List<int>();
+    private readonly List<int> skillLevels = PlayerDatasDefaults.skillLevels;//PlayerDatasDefaults.CreateSkillLevels(Enum.GetValues(typeof(Defines.Skill)).Length);
+    private readonly List<float> sounds = PlayerDatasDefaults.sounds; //Enumerable.Repeat(100f, Enum.GetValues(typeof(Defines.Sound)).Length).ToList();
 
     public int Level { get => level; set { level = value; SavePlayerData(PlayerDatasKeys.level, level); } }
-    public int CurrentExp { get => currentExp; set { CurrentExp = value; SavePlayerData(PlayerDatasKeys.currentExp, CurrentExp); } }
-    public int TotalSkillPoint { get => totalSkillPoint; set { TotalSkillPoint = value; SavePlayerData(PlayerDatasKeys.totalSkillPoint, TotalSkillPoint); } }
-    public int LeftSkillPoint { get => leftSkillPoint; set { LeftSkillPoint = value; SavePlayerData(PlayerDatasKeys.leftSkillPoint, LeftSkillPoint); } }
+    public int CurrentExp { get => currentExp; set { currentExp = value; SavePlayerData(PlayerDatasKeys.currentExp, currentExp); } }
+    public int TotalSkillPoint { get => totalSkillPoint; set { totalSkillPoint = value; SavePlayerData(PlayerDatasKeys.totalSkillPoint, totalSkillPoint); } }
+    public int LeftSkillPoint { get => leftSkillPoint; set { leftSkillPoint = value; SavePlayerData(PlayerDatasKeys.leftSkillPoint, leftSkillPoint); } }
     public ReadOnlyCollection<int> SkillLevels { get => skillLevels.AsReadOnly(); }
-
-    private void Start()
-    {
-        LoadAllPlayerData();
-    }
+    public ReadOnlyCollection<float> Sounds { get => sounds.AsReadOnly(); }
+   
+    //private void Awake()
+    //{
+    //    Init();
+    //}
 
     private void OnDestroy()
     {
@@ -59,6 +62,22 @@ public class PlayerDataController : MonoBehaviour
             skillLevels[index] = level;
             SavePlayerData(PlayerDatasKeys.skillLevels, skillLevels);
         }
+
+    }
+
+    public float GetSoundAt(Defines.Sound sound)
+    {
+        return sounds[(int)sound];
+    }
+    public void SetSoundAt(Defines.Sound sound, float value)
+    {
+        int index = (int)sound;
+
+        value = Math.Clamp(value, 0, 100);
+        sounds[index] = value;
+        SavePlayerData(PlayerDatasKeys.sounds, sounds);
+
+
     }
 
     public void SaveAllPlayerData() {
@@ -71,6 +90,9 @@ public class PlayerDataController : MonoBehaviour
         string skillLevelsString = string.Join(",", skillLevels);
         PlayerPrefs.SetString(PlayerDatasKeys.skillLevels, skillLevelsString);
 
+        string soundsString = string.Join(",", sounds);
+        PlayerPrefs.SetString(PlayerDatasKeys.sounds, soundsString);
+
         PlayerPrefs.Save(); // 저장 적용
     }
     public void LoadAllPlayerData()
@@ -80,7 +102,6 @@ public class PlayerDataController : MonoBehaviour
         totalSkillPoint = PlayerPrefs.GetInt(PlayerDatasKeys.totalSkillPoint, PlayerDatasDefaults.totalSkillPoint);
         leftSkillPoint = PlayerPrefs.GetInt(PlayerDatasKeys.leftSkillPoint, PlayerDatasDefaults.leftSkillPoint);
 
-        // 문자열 → List<int> 변환
         string skillLevelsString = PlayerPrefs.GetString(PlayerDatasKeys.skillLevels, "");
 
         if (!string.IsNullOrEmpty(skillLevelsString))
@@ -94,6 +115,21 @@ public class PlayerDataController : MonoBehaviour
                 }
             }
         }
+
+        string soundString = PlayerPrefs.GetString(PlayerDatasKeys.sounds, "");
+
+        if (!string.IsNullOrEmpty(soundString))
+        {
+            string[] values = soundString.Split(',');
+            for (int i = 0; i < values.Length; ++i)
+            {
+                if (float.TryParse(values[i], out float sound))
+                {
+                    sounds[i] = sound;
+                }
+            }
+        }
+
     }
     private void SavePlayerData<T>(string key, T value)
     {
@@ -112,8 +148,13 @@ public class PlayerDataController : MonoBehaviour
                 break;
 
             case List<int> listValue:
-                string listAsString = string.Join(",", listValue);
-                PlayerPrefs.SetString(key, listAsString);
+                string listIntAsString = string.Join(",", listValue);
+                PlayerPrefs.SetString(key, listIntAsString);
+                break;
+
+            case List<float> listValue:
+                string listFloatAsString = string.Join(",", listValue);
+                PlayerPrefs.SetString(key, listFloatAsString);
                 break;
 
             default:
@@ -131,6 +172,7 @@ public class PlayerDataController : MonoBehaviour
         public const string totalSkillPoint = "TotalSkillPoint";
         public const string leftSkillPoint = "LeftSkillPoint";
         public const string skillLevels = "SkillLevels"; // List 저장용
+        public const string sounds = "Sounds";
     }
     private static class PlayerDatasDefaults
     {
@@ -138,9 +180,10 @@ public class PlayerDataController : MonoBehaviour
         public const int currentExp = 0;
         public const int totalSkillPoint = 0;
         public const int leftSkillPoint = 0;
-        public static readonly List<int> SkillLevels = CreateSkillLevels(Enum.GetValues(typeof(Defines.Skill)).Length);
+        public static readonly List<int> skillLevels = CreateSkillLevels(Enum.GetValues(typeof(Defines.Skill)).Length);
+        public static readonly List<float> sounds = Enumerable.Repeat(100f, Enum.GetValues(typeof(Defines.Sound)).Length).ToList();
 
-        private static List<int> CreateSkillLevels(int count)
+        public static List<int> CreateSkillLevels(int count)
         {
             List<int> list = Enumerable.Repeat(0, count).ToList();
             if (count > 0)

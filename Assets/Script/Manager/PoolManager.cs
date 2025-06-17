@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PoolManager
@@ -38,7 +39,10 @@ public class PoolManager
             poolable.transform.SetParent(Root);
             poolable.gameObject.SetActive(false);
 
-            poolQueue.Enqueue(poolable);
+            if(!poolQueue.Contains(poolable))
+            {
+                poolQueue.Enqueue(poolable);
+            }
         }
         public Poolable Dequeue(Transform transform = null)
         {
@@ -50,10 +54,14 @@ public class PoolManager
             else
             {
                 poolable = Create();
-                poolable.name = Original.name;
             }
-
+            
             poolable.transform.parent = transform;
+            if (transform == null)
+            {
+                SceneManager.MoveGameObjectToScene(poolable.gameObject, SceneManager.GetActiveScene());
+            }
+            
             poolable.gameObject.SetActive(true);
 
             return poolable;
@@ -66,12 +74,12 @@ public class PoolManager
             {
                 poolable = poolQueue.Dequeue();
                 poolable.transform.parent = null;
+                SceneManager.MoveGameObjectToScene(poolable.gameObject, SceneManager.GetActiveScene());
                 poolable.transform.position = position;
             }
             else
             {
                 poolable = Create(position);
-                poolable.name = Original.name;
             }
 
             poolable.gameObject.SetActive(true);

@@ -26,6 +26,12 @@ public static class Defines
         //Dummy // 더미
     }
 
+    public enum Sound
+    {
+        Bgm = 0,
+        Effect
+    }
+
     public enum Boundary 
     {
         [Description("Up")] UP = 0,

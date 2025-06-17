@@ -26,7 +26,8 @@ public class ItemController : MonoBehaviour
         reflectCount = 0;
         direction = Utils.GetRandomDirection(new Vector2(0, -1), 10, 50);
 
-        skill = Utils.GetRandomEnumValue(skill);
+        //skill = Utils.GetRandomEnumValue(skill);
+        skill = Defines.Skill.StraightBee;
         skillSprite.sprite = Managers.Resource.Load<Sprite>($"Sprites/" + skill.ToDescription());
 
         Vector2 newSpriteSize = skillSprite.sprite.bounds.size;
@@ -34,7 +35,6 @@ public class ItemController : MonoBehaviour
         Vector2 scale = spriteSize / newSpriteSize;
 
         skillSprite.transform.localScale = Vector3.one * scale;
-        //spriteSize = skillSprite.sprite.bounds.size;
     }
 
     void Update()
