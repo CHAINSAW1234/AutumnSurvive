@@ -10,12 +10,15 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class StateSkillMove : State
 {
     private SkillController context = null;
+
+    private readonly Vector3 Direction = new Vector3(0f, 1f, 0f);
+
     public StateSkillMove(StateMachine stateMachine, SkillController context) : base(stateMachine)
     {
         this.context = context;
     }
     public override void Execute()
     {
-        context.transform.position = context.transform.position + new Vector3(context.Direction.x, context.Direction.y, 0) * Time.deltaTime * context.MoveSpeed;
+        context.transform.position = context.transform.position + Direction * Time.deltaTime * context.MoveSpeed;
     }
 }

@@ -6,13 +6,17 @@ public class ItemController : MonoBehaviour
 {
 	private Vector2 direction = Vector2.zero;
     private int reflectCount = 0;
+    private float moveSpeed;
 
-	private SpriteRenderer skillSprite = null;
+    private SpriteRenderer skillSprite = null;
     private Defines.Skill skill;
-
-    private const float moveSpeed = 5f;
-    private const int MaxReflectCount = 5;
     private Vector2 spriteSize;
+
+
+    private const float minSpeed = 4f;
+    private const float maxSpeed = 8f;
+    private const int MaxReflectCount = 5;
+
     private void Awake()
     {
         skillSprite = GetComponentsInChildren<SpriteRenderer>()
@@ -23,11 +27,11 @@ public class ItemController : MonoBehaviour
 
     void OnEnable()
 	{
-        reflectCount = 0;
         direction = Utils.GetRandomDirection(new Vector2(0, -1), 10, 50);
+        reflectCount = 0;
+        moveSpeed = UnityEngine.Random.Range(minSpeed, maxSpeed);
 
-        //skill = Utils.GetRandomEnumValue(skill);
-        skill = Defines.Skill.StraightBee;
+        skill = PlayerDataController.Instance.GetRandomEnableSkill();
         skillSprite.sprite = Managers.Resource.Load<Sprite>($"Sprites/" + skill.ToDescription());
 
         Vector2 newSpriteSize = skillSprite.sprite.bounds.size;
@@ -35,6 +39,7 @@ public class ItemController : MonoBehaviour
         Vector2 scale = spriteSize / newSpriteSize;
 
         skillSprite.transform.localScale = Vector3.one * scale;
+
     }
 
     void Update()

@@ -3,15 +3,6 @@ using static Defines;
 
 namespace Data
 {
-    [System.Serializable]
-    public struct Direction
-    {
-        public float x;
-        public float y;
-
-        // Vector2로 변환하고 싶을 경우 추가 메서드
-        public UnityEngine.Vector2 ToVector2() => new UnityEngine.Vector2(x, y);
-    }
 
     #region Skill
 
@@ -20,9 +11,16 @@ namespace Data
     {
         public int level;
         public float moveSpeed;
-        public Direction direction;
         public float duration;
         public int createCount;
+
+        public struct InfoDescription
+        {
+            public const string level = "레벨";
+            public const string moveSpeed = "속도";
+            public const string duration = "지속 시간";
+            public const string createCount = "생성 개수";
+        }
     }
 
     [System.Serializable]
@@ -30,7 +28,8 @@ namespace Data
     {
         public Defines.Skill Skill; // not used, but in jsonFile
         public List<SkillLevelInfo> SkillData;
-        
+        public string Description;
+
         public readonly int MaxLevel { get => SkillData.Count; }
         public readonly SkillLevelInfo? this[int i]
         {
@@ -40,8 +39,42 @@ namespace Data
             }
         }
 
-    }
+        public readonly string GetLevelInfo()
+        {
+            var levelData = Managers.Data.GetSkillLevelDataHelper(Skill, PlayerDataController.Instance.GetSkillLevelAt(Skill)).Value;
+            List<string> infoParts = new();
 
+            void AddInfo(string description, object value)
+            {
+                infoParts.Add($"{description} : {value}");
+            }
+
+            switch (Skill)
+            {
+                case Defines.Skill.ButterflyExplosion:
+                    AddInfo(SkillLevelInfo.InfoDescription.duration, levelData.duration);
+                    break;
+
+                case Defines.Skill.Squirrals:
+                case Defines.Skill.ShieldBee:
+                    AddInfo(SkillLevelInfo.InfoDescription.createCount, levelData.createCount);
+                    AddInfo(SkillLevelInfo.InfoDescription.duration, levelData.duration);
+                    break;
+
+                case Defines.Skill.Butterfly:
+                    AddInfo(SkillLevelInfo.InfoDescription.moveSpeed, levelData.moveSpeed);
+                    break;
+
+                case Defines.Skill.SpreadBullet:
+                case Defines.Skill.StraightBullet:
+                case Defines.Skill.StraightBee:
+                    AddInfo(SkillLevelInfo.InfoDescription.createCount, levelData.createCount);
+                    break;
+            }
+
+            return string.Join(", ", infoParts);
+        }
+    }
     #endregion
 
     #region Level

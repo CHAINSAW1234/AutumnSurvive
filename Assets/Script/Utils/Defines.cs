@@ -3,6 +3,18 @@ using UnityEngine;
 
 public static class Defines
 {
+    public enum Scene
+    {
+        StartScene,
+        GamePlayScene
+    }
+    public enum Sound
+    {
+        Bgm = 0,
+        Effect
+    }
+
+
     public enum State
     {
         Chase,
@@ -26,11 +38,6 @@ public static class Defines
         //Dummy // 더미
     }
 
-    public enum Sound
-    {
-        Bgm = 0,
-        Effect
-    }
 
     public enum Boundary 
     {

@@ -91,13 +91,11 @@ public class PoolManager
         {
             foreach(var obj in poolQueue)
             {
-                Object.Destroy(obj);
+                Object.Destroy(obj.gameObject);
             }
             poolQueue.Clear();
 
-            Object.Destroy(Root);
             Root = null;
-            Object.Destroy(Original);
             Original = null;
         }
     }
@@ -111,16 +109,6 @@ public class PoolManager
         {
             root = new GameObject("@PoolManager").transform;
             root.parent = parent;
-
-            GameObject[] pools = Managers.Resource.LoadAll<GameObject>("Prefabs/");
-            foreach (GameObject obj in pools)
-            {
-                Poolable pool = obj.GetComponent<Poolable>();
-                if (pool != null)
-                {
-                    CreatePool(obj, pool.poolCreateCount);
-                }
-            }
         }
     }
 

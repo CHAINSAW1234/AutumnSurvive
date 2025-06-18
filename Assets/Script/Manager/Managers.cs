@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Managers : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Managers : MonoBehaviour
     private DataManager dataManager = new DataManager();
     private PoolManager poolManager = new PoolManager();
 
-    private static Managers Instance { get { Init(); return s_Instance; } }
+    public static Managers Instance { get { Init(); return s_Instance; } }
     public static InputManager Input { get { return  Instance.inputManager; } }
     public static ResourceManager Resource {  get { return Instance.resourceManager; } }
     public static SoundManager Sound { get { return Instance.soundManager; } }
@@ -29,6 +30,7 @@ public class Managers : MonoBehaviour
                 gameObject.AddComponent<Managers>();
             }
             DontDestroyOnLoad(gameObject);
+
             s_Instance = gameObject.GetComponent<Managers>();
             s_Instance.InitManagers();
         }
@@ -45,12 +47,11 @@ public class Managers : MonoBehaviour
         Input.Update();
     }
 
-    void Clear()
+    public void Clear()
     {
         Input.Clear();
         Sound.Clear();
-        Data.Clear();
+        //Data.Clear();
         Pool.Clear();
-
     }
 }

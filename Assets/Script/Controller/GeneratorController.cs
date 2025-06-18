@@ -50,8 +50,8 @@ public class GeneratorController : MonoBehaviour
             vertexExtent * direction.y + direction.y * 0.5f, 0);
 
         generatorSize = new Vector2(
-            Mathf.Max(1f, size.x * Mathf.Abs(direction.y) * sizeBias),
-            Mathf.Max(1f, size.y * Mathf.Abs(direction.x) * sizeBias)); 
+            Mathf.Max(0.1f, size.x * Mathf.Abs(direction.y) * sizeBias),
+            Mathf.Max(0.1f, size.y * Mathf.Abs(direction.x) * sizeBias)); 
 
     }
     private IEnumerator GenerateGameObject()
@@ -64,8 +64,8 @@ public class GeneratorController : MonoBehaviour
             }
             else
             {
-                Generate();
                 yield return new WaitForSeconds(generateDelay);
+                Generate();
             }
         }
     }

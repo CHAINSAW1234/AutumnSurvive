@@ -39,14 +39,24 @@ public class PlayerDataController : MonoBehaviour
     public ReadOnlyCollection<int> SkillLevels { get => skillLevels.AsReadOnly(); }
     public ReadOnlyCollection<float> Sounds { get => sounds.AsReadOnly(); }
    
-    //private void Awake()
-    //{
-    //    Init();
-    //}
-
     private void OnDestroy()
     {
         SaveAllPlayerData();
+    }
+
+    public Defines.Skill GetRandomEnableSkill()
+    {
+        // 1. 값이 0이 아닌 인덱스들을 수집
+        List<int> nonZeroIndices = new List<int>();
+        for (int i = 0; i < SkillLevels.Count; i++)
+        {
+            if (SkillLevels[i] != 0)
+                nonZeroIndices.Add(i);
+        }
+
+        // 3. 무작위 인덱스 반환
+        int randomIndex = UnityEngine.Random.Range(0, nonZeroIndices.Count);
+        return (Defines.Skill)randomIndex;
     }
 
     public int GetSkillLevelAt(Defines.Skill skill)
