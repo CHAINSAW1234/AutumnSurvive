@@ -38,7 +38,9 @@ public class PlayerDataController : MonoBehaviour
     public int LeftSkillPoint { get => leftSkillPoint; set { leftSkillPoint = value; SavePlayerData(PlayerDatasKeys.leftSkillPoint, leftSkillPoint); } }
     public ReadOnlyCollection<int> SkillLevels { get => skillLevels.AsReadOnly(); }
     public ReadOnlyCollection<float> Sounds { get => sounds.AsReadOnly(); }
-   
+
+    private const int MaxLevel = 45;
+
     private void OnDestroy()
     {
         SaveAllPlayerData();

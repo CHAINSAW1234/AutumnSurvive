@@ -49,4 +49,12 @@ public class GamePlayController : MonoBehaviour
 	{
 		return ((int)Mathf.Floor(score)) / ((int)scoreSpeed * 2);
 	}
+
+    public string GetGamePlayTime()
+    {
+        float minute = (Time.time - sceneStartTime) / 60f;
+        float second = (Time.time - sceneStartTime) % 60f;
+
+        return string.Format("{0:D2} : {1:D2}", Mathf.FloorToInt(minute), Mathf.FloorToInt(second));
+    }
 }

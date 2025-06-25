@@ -9,6 +9,8 @@ public class DataManager
     public Dictionary<Defines.Skill, SkillLevelData> SkillDict { get; private set; } = new Dictionary<Defines.Skill, SkillLevelData>();
     public Dictionary<int, PlayerLevelInfo> PlayerLevelDict { get; private set; } = new Dictionary<int, PlayerLevelInfo>();
 
+    public int MaxLevel { get => PlayerLevelDict.Count; }
+
     public void Init()
     {
         ReadSkillDatas();

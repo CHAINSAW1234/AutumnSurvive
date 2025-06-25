@@ -83,6 +83,5 @@ public class ItemController : MonoBehaviour
     {
         Managers.Resource.Destroy(gameObject);
         Managers.Resource.Instantiate(skill.ToDescription(), transform.position);
-
     }
 }
