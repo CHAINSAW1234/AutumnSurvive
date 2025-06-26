@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using static UnityEditor.VersionControl.Asset;
-
 public class StateMachine
 {
     private Dictionary<Defines.State, State> states = new Dictionary<Defines.State, State>();

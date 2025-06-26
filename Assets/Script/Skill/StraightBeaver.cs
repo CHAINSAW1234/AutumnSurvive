@@ -40,7 +40,7 @@ public class StraightBeaver : SkillController
                 direction = Managers.Input.TouchDirection.normalized;
             }
 
-            GameObject bullet = Managers.Resource.Instantiate("Bullet", transform.position);
+            GameObject bullet = Managers.Resource.Instantiate("Origin/Bullet", transform.position);
             BulletController bulletController = bullet.GetOrAddComponent<BulletController>();
             bulletController.Direction = direction;
             bulletController.MoveSpeed = Mathf.Max(0.1f, Managers.Input.TouchDirectionMagnitude) * bulletController.MoveSpeed + MagnitudeBias;

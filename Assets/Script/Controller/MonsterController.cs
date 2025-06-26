@@ -46,6 +46,7 @@ public class MonsterController : MonoBehaviour
         {
             case "Skill":
                 gamePlayController.AddScore(UnityEngine.Random.Range(30, 50));
+                Managers.Resource.Instantiate("Explosion", transform.position);
                 Managers.Resource.Destroy(gameObject);
                 break;
             case "Boundary":

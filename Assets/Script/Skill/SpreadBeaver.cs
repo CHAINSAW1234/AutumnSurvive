@@ -36,7 +36,7 @@ public class SpreadBeaver : SkillController
             Quaternion rotation = Quaternion.AngleAxis(RotationDegree, Vector3.forward);
             direction = rotation * direction;
 
-            GameObject bullet = Managers.Resource.Instantiate("Bullet", transform.position);
+            GameObject bullet = Managers.Resource.Instantiate("Origin/Bullet", transform.position);
             bullet.GetOrAddComponent<BulletController>().Direction = direction;
 
             yield return new WaitForSeconds(GenerateDelay);
