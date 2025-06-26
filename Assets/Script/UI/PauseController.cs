@@ -6,8 +6,8 @@ using UnityEngine;
 public class PauseController : MonoBehaviour
 {
     private static int PauseCount = 0;
-    // Start is called before the first frame update
-    void Awake()
+
+    private void OnDestroy()
     {
         PauseCount = 0;
         Time.timeScale = 1f;

@@ -95,7 +95,7 @@ public class PoolManager
             }
             poolQueue.Clear();
 
-            Root = null;
+            Object.Destroy(Root.gameObject);
             Original = null;
         }
     }
@@ -112,10 +112,13 @@ public class PoolManager
         }
     }
 
-    private void CreatePool(GameObject origin, int count = 10)
+    private void CreatePool(GameObject origin)
     {
+
         if (origin != null && !poolDict.ContainsKey(origin.name))
         {
+            int count = origin.GetOrAddComponent<Poolable>().poolCreateCount;
+
             Pool pool = new Pool();
             pool.Init(origin, count);
             pool.Root.parent = root;

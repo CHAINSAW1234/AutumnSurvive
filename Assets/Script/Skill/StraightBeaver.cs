@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class SpreadBullet : SkillController
+public class StraightBeaver : SkillController
 {
     private Coroutine coroutine = null;
 
+    private const float MagnitudeBias = 0.1f;
     private const float GenerateDelay = 0.1f;
-    private const int RotationDegree = -25;
+
     protected override void Awake()
     {
-        skill = Defines.Skill.SpreadBullet;
+        skill = Defines.Skill.StraightBeaver;
         base.Awake();
 
         stateMachine.RegisterState<StateSkillFollow>(Defines.State.Follow, this);
@@ -19,7 +20,7 @@ public class SpreadBullet : SkillController
     {
         base.OnEnable();
         State = Defines.State.Follow;
-        coroutine = StartCoroutine(GenerateBullet());
+        coroutine = StartCoroutine(GenerateBeaver());
     }
 
     protected override void OnDisable()
@@ -28,16 +29,21 @@ public class SpreadBullet : SkillController
         StopCoroutine(coroutine);
         coroutine = null;
     }
-    private IEnumerator GenerateBullet()
+
+    private IEnumerator GenerateBeaver()
     {
-        Vector2 direction = Utils.GetRandomDirection(new Vector2(0, 1f), 0, 180);
+        Vector2 direction = new Vector2(0, 1f);
         for (int i = 0; i < CreateCount; ++i)
         {
-            Quaternion rotation = Quaternion.AngleAxis(RotationDegree, Vector3.forward);
-            direction = rotation * direction;
+            if(Managers.Input.TouchDirection != Vector3.zero)
+            {
+                direction = Managers.Input.TouchDirection.normalized;
+            }
 
             GameObject bullet = Managers.Resource.Instantiate("Bullet", transform.position);
-            bullet.GetOrAddComponent<BulletController>().Direction = direction;
+            BulletController bulletController = bullet.GetOrAddComponent<BulletController>();
+            bulletController.Direction = direction;
+            bulletController.MoveSpeed = Mathf.Max(0.1f, Managers.Input.TouchDirectionMagnitude) * bulletController.MoveSpeed + MagnitudeBias;
 
             yield return new WaitForSeconds(GenerateDelay);
         }

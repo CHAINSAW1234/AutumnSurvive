@@ -7,8 +7,8 @@ public class ButtonSceneController : MonoBehaviour
     public void ToGamePlayScene() => ChangeScene(Defines.Scene.GamePlayScene);
     public void ResetCurretScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Managers.Instance.Clear();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     } 
     public void ExitGame()
     {
@@ -21,7 +21,7 @@ public class ButtonSceneController : MonoBehaviour
 
     private void ChangeScene(Defines.Scene scene)
     {
-        SceneManager.LoadScene(scene.ToDescription());
         Managers.Instance.Clear();
+        SceneManager.LoadScene(scene.ToDescription());
     }
 }

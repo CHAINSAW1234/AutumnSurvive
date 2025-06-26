@@ -47,7 +47,7 @@ public class GamePlayController : MonoBehaviour
 
 	public int GetExp()
 	{
-		return ((int)Mathf.Floor(score)) / ((int)scoreSpeed * 2);
+		return ((int)Mathf.Floor(score)) / ((int)scoreSpeed * 10);
 	}
 
     public string GetGamePlayTime()

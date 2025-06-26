@@ -32,6 +32,7 @@ public class SoundManager
         foreach (AudioSource audioSource in audioSources)
         {
             audioSource.clip = null;
+            audioSource.mute = false;
             audioSource.Stop();
         }
 
@@ -69,9 +70,9 @@ public class SoundManager
 
     public void Mute(bool isMute)
     {
-        foreach(AudioSource source in audioSources)
+        foreach(AudioSource audioSource in audioSources)
         {
-            source.mute = isMute;
+            audioSource.mute = isMute;
         }
     }
 

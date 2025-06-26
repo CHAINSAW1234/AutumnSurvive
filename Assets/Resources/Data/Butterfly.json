@@ -1,5 +1,6 @@
 {
   "Skill": 2,
+  "Description": "나비가 천천이 앞으로 이동하며 부딪히는 적들을 없앱니다.",
   "SkillData": [
     {
       "level": 1,
@@ -8,7 +9,7 @@
         "x": 0.0,
         "y": 1.0
       },
-      "duration": -1,     
+      "duration": -1,
       "createCount": 1
     },
     {

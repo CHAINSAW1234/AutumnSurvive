@@ -1,16 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class StraightBullet : SkillController
+public class SpreadBeaver : SkillController
 {
     private Coroutine coroutine = null;
 
-    private const float MagnitudeBias = 0.1f;
     private const float GenerateDelay = 0.1f;
-
+    private const int RotationDegree = -25;
     protected override void Awake()
     {
-        skill = Defines.Skill.StraightBullet;
+        skill = Defines.Skill.SpreadBeaver;
         base.Awake();
 
         stateMachine.RegisterState<StateSkillFollow>(Defines.State.Follow, this);
@@ -20,7 +19,7 @@ public class StraightBullet : SkillController
     {
         base.OnEnable();
         State = Defines.State.Follow;
-        coroutine = StartCoroutine(GenerateBullet());
+        coroutine = StartCoroutine(GenerateBeaver());
     }
 
     protected override void OnDisable()
@@ -29,21 +28,16 @@ public class StraightBullet : SkillController
         StopCoroutine(coroutine);
         coroutine = null;
     }
-
-    private IEnumerator GenerateBullet()
+    private IEnumerator GenerateBeaver()
     {
-        Vector2 direction = new Vector2(0, 1f);
+        Vector2 direction = Utils.GetRandomDirection(new Vector2(0, 1f), 0, 180);
         for (int i = 0; i < CreateCount; ++i)
         {
-            if(Managers.Input.TouchDirection != Vector3.zero)
-            {
-                direction = Managers.Input.TouchDirection.normalized;
-            }
+            Quaternion rotation = Quaternion.AngleAxis(RotationDegree, Vector3.forward);
+            direction = rotation * direction;
 
             GameObject bullet = Managers.Resource.Instantiate("Bullet", transform.position);
-            BulletController bulletController = bullet.GetOrAddComponent<BulletController>();
-            bulletController.Direction = direction;
-            bulletController.MoveSpeed = Mathf.Max(0.1f, Managers.Input.TouchDirectionMagnitude) * bulletController.MoveSpeed + MagnitudeBias;
+            bullet.GetOrAddComponent<BulletController>().Direction = direction;
 
             yield return new WaitForSeconds(GenerateDelay);
         }

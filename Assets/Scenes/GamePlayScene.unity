@@ -1411,6 +1411,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 975934674152064831, guid: d87e2652be3bc0a4585306ce6b95d467, type: 3}
+      propertyPath: resultPanel
+      value: 
+      objectReference: {fileID: 1003898551121475252}
     - target: {fileID: 3233316191562570982, guid: d87e2652be3bc0a4585306ce6b95d467, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1501,7 +1505,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6233221337151617636, guid: d87e2652be3bc0a4585306ce6b95d467, type: 3}
       propertyPath: m_BodyType
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233221337151617636, guid: d87e2652be3bc0a4585306ce6b95d467, type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d87e2652be3bc0a4585306ce6b95d467, type: 3}
@@ -1827,6 +1835,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 484292217716328135, guid: 770bddfb260480a4ba124945b888e7bc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 770bddfb260480a4ba124945b888e7bc, type: 3}
+--- !u!1 &1003898551121475252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7481997559608449131, guid: 770bddfb260480a4ba124945b888e7bc, type: 3}
+  m_PrefabInstance: {fileID: 1003898551121475251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1012080272023327115
 PrefabInstance:
   m_ObjectHideFlags: 0

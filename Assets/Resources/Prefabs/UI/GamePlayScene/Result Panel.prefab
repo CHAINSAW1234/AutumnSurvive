@@ -1276,7 +1276,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 423796431242162846}
   m_HandleRect: {fileID: 0}
@@ -1567,6 +1567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7481997559608449130}
+  - component: {fileID: 225553812556710940}
   - component: {fileID: 9032258071087078757}
   m_Layer: 5
   m_Name: Result Panel
@@ -1596,6 +1597,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 280.61}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &225553812556710940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481997559608449131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291f720504f565d4fb15a5c2706ee6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9032258071087078757
 MonoBehaviour:
   m_ObjectHideFlags: 0

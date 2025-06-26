@@ -29,17 +29,15 @@ public class PlayerDataController : MonoBehaviour
     private int currentExp;
     private int totalSkillPoint;
     private int leftSkillPoint;
-    private readonly List<int> skillLevels = PlayerDatasDefaults.skillLevels;//PlayerDatasDefaults.CreateSkillLevels(Enum.GetValues(typeof(Defines.Skill)).Length);
-    private readonly List<float> sounds = PlayerDatasDefaults.sounds; //Enumerable.Repeat(100f, Enum.GetValues(typeof(Defines.Sound)).Length).ToList();
+    private readonly List<int> skillLevels = PlayerDatasDefaults.skillLevels;
+    private readonly List<float> sounds = PlayerDatasDefaults.sounds;
 
-    public int Level { get => level; set { level = value; SavePlayerData(PlayerDatasKeys.level, level); } }
+    public int Level { get => level; private set { level = value; SavePlayerData(PlayerDatasKeys.level, level); } }
     public int CurrentExp { get => currentExp; set { currentExp = value; SavePlayerData(PlayerDatasKeys.currentExp, currentExp); } }
     public int TotalSkillPoint { get => totalSkillPoint; set { totalSkillPoint = value; SavePlayerData(PlayerDatasKeys.totalSkillPoint, totalSkillPoint); } }
     public int LeftSkillPoint { get => leftSkillPoint; set { leftSkillPoint = value; SavePlayerData(PlayerDatasKeys.leftSkillPoint, leftSkillPoint); } }
     public ReadOnlyCollection<int> SkillLevels { get => skillLevels.AsReadOnly(); }
     public ReadOnlyCollection<float> Sounds { get => sounds.AsReadOnly(); }
-
-    private const int MaxLevel = 45;
 
     private void OnDestroy()
     {
@@ -58,7 +56,25 @@ public class PlayerDataController : MonoBehaviour
 
         // 3. 무작위 인덱스 반환
         int randomIndex = UnityEngine.Random.Range(0, nonZeroIndices.Count);
-        return (Defines.Skill)randomIndex;
+        return (Defines.Skill)nonZeroIndices[randomIndex];
+    }
+
+    public void LevelUp()
+    {
+        Level += 1;
+        CurrentExp = 0;
+
+        if (Managers.Data.PlayerLevelDict[Level].skillPoint == true)
+        {
+            TotalSkillPoint += 1;
+            LeftSkillPoint += 1;
+        }
+        else
+        {
+            Defines.Skill unlockSkill = Managers.Data.PlayerLevelDict[PlayerDataController.Instance.Level].skillUnlock;
+            SetSkillLevelAt(unlockSkill, GetSkillLevelAt(unlockSkill) + 1);
+        }
+
     }
 
     public int GetSkillLevelAt(Defines.Skill skill)

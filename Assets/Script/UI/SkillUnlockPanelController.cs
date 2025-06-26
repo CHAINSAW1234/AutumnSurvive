@@ -25,6 +25,6 @@ public class SkillUnlockPanelController : MonoBehaviour
     {
         skillIcon.sprite = Managers.Resource.Load<Sprite>($"Sprites/" + skill.ToDescription());
         skillNameText.text = skill.ToDescription();
-        skillDescriptionText.text = "test\ntest\ntest\ntest";//Managers.Data.SkillDict[skill].Description;
+        skillDescriptionText.text = Managers.Data.SkillDict[skill].Description;
     }
 }

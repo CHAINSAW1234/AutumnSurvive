@@ -31,13 +31,12 @@ public static class Defines
         Squirrals, // 유도탄
         Butterfly, // 벌미사일
         //Beaver, // 콩벌레
-        SpreadBullet, // 베이비 버그1
-        StraightBullet, // 베이비 버그2
+        SpreadBeaver, // 베이비 버그1
+        StraightBeaver, // 베이비 버그2
         ShieldBee, //코스모스
         StraightBee, // 코스모스2
         //Dummy // 더미
     }
-
 
     public enum Boundary 
     {
@@ -46,7 +45,6 @@ public static class Defines
         [Description("Left")] LEFT = 2,
         [Description("Right")] RIGHT = 3
     };
-
 
     public static readonly Vector2[] Direction = 
         { new Vector2(0, 1), new Vector2(0, -1), new Vector2(-1, 0), new Vector2(1, 0) };

@@ -23,7 +23,6 @@ public class SoundSliderController : MonoBehaviour
     private void OnEnable()
     {
         ResetSliders();
-
     }
 
     public void UpdateSounds()

@@ -11,8 +11,8 @@ public class MonsterController : MonoBehaviour
 
     private float moveSpeed;
 
-    private const float minSpeed = 5f;
-    private const float maxSpeed = 10f;
+    private const float minSpeed = 4f;
+    private const float maxSpeed = 8f;
 
     private const float Radius = 2f;
 

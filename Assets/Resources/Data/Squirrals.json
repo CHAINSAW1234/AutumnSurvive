@@ -1,5 +1,6 @@
 {
   "Skill": 1,
+  "Description": "적들을 추격하는 다람쥐들을 소환합니다.\n 다람쥐들은 타겟에게 부딪히면 폭발합니다.",
   "SkillData": [
     {
       "level": 1,
@@ -8,7 +9,7 @@
         "x": 0.0,
         "y": 1.0
       },
-      "duration": 10,     
+      "duration": 10,
       "createCount": 3
     },
     {

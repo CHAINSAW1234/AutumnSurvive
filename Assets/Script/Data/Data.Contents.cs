@@ -65,8 +65,8 @@ namespace Data
                     AddInfo(SkillLevelInfo.InfoDescription.moveSpeed, levelData.moveSpeed);
                     break;
 
-                case Defines.Skill.SpreadBullet:
-                case Defines.Skill.StraightBullet:
+                case Defines.Skill.SpreadBeaver:
+                case Defines.Skill.StraightBeaver:
                 case Defines.Skill.StraightBee:
                     AddInfo(SkillLevelInfo.InfoDescription.createCount, levelData.createCount);
                     break;

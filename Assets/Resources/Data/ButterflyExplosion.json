@@ -1,5 +1,6 @@
 {
   "Skill": 0,
+  "Description": "일정시간동안 나비가 나타나 부딪히는 적들을 없앱니다.", 
   "SkillData": [
     {
       "level": 1,

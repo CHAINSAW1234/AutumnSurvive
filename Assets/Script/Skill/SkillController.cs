@@ -11,7 +11,7 @@ public abstract class SkillController : MonoBehaviour
     protected StateMachine stateMachine = new StateMachine();
     public Transform Player { get; protected set; } = null;
 
-    public Defines.Skill skill;
+    protected Defines.Skill skill;
 
     public float MoveSpeed { get; protected set; }
     public float Duration { get; protected set; } = Defines.Infinity;

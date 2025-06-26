@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: -1627715435, guid: 985218c25c65a4649ba740edd451f4a9, type: 3}
   m_Name: ScreenshotManager
   m_EditorClassIdentifier: 
-  scale: 0
-  width: 0
-  height: 0
+  scale: 1
+  width: 1080
+  height: 2280
   myCamera0: {fileID: 0}
-  isTransparent: 0
+  isTransparent: 1
   title: Instant Screenshot
-  path: 
+  path: C:/Users/stgo5015/Documents/GitHub/LadyBug/Assets

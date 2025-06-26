@@ -12,7 +12,7 @@ public class SkillPanelController : MonoBehaviour
     private TextMeshProUGUI skillPointText;
 
 
-    private void Start()
+    private void Awake()
     {
         if (skillPointText == null)
         {
@@ -32,22 +32,27 @@ public class SkillPanelController : MonoBehaviour
 
         for (int i = 0; i < length; ++i)
         {
-
             GameObject obj = content.transform.GetChild(i).gameObject;
+            
+            Button[] skillButtons = obj.GetComponentsInChildren<Button>();
+
+            foreach(Button button in skillButtons)
+            {
+                button.onClick.AddListener(() => UpdateSkillPointText());
+            }
 
             obj.GetOrAddComponent<SkillSlotController>().Skill = (Defines.Skill)i;
-
-            //if (PlayerDataController.Instance.SkillLevels[i] == 0)
-            //{
-            //    content.transform.GetChild(i).gameObject.SetActive(false);
-            //}
+            if (PlayerDataController.Instance.SkillLevels[i] == 0)
+            {
+                content.transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
     }
 
     private void OnEnable()
     {
         UpdateSkillPointText();
-        //UpdateScrollView();
+        UpdateScrollView();
     }
 
     public void UpdateSkillPointText()
@@ -55,7 +60,7 @@ public class SkillPanelController : MonoBehaviour
         skillPointText.text = PlayerDataController.Instance.LeftSkillPoint + "/" + PlayerDataController.Instance.TotalSkillPoint;
     }
 
-    public void UpdateScrollView()
+    private void UpdateScrollView()
     {
         for (int i=0;i< Enum.GetValues(typeof(Defines.Skill)).Length; ++i)
         {

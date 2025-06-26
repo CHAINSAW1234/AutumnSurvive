@@ -1,5 +1,6 @@
 {
   "Skill": 6,
+  "Description": "화면 아래에서부터 앞으로 이동하는 벌들을 소환합니다.",
   "SkillData": [
     {
       "level": 1,

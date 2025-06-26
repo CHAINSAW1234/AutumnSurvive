@@ -2,7 +2,8 @@
 
 public class PlayerController : MonoBehaviour
 {
-
+    [SerializeField]
+    GameObject resultPanel;
 	public Vector3 Position 
 	{ 
 		get { return transform.position; } 
@@ -65,7 +66,8 @@ public class PlayerController : MonoBehaviour
     {
         switch(collision.gameObject.tag)
         {
-            case "Monster":
+            case "Enemy":
+                resultPanel.SetActive(true);
                 // Finish Game
                 break;
 

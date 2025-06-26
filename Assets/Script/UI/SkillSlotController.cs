@@ -43,7 +43,7 @@ public class SkillSlotController : MonoBehaviour
         skillIcon.sprite = Managers.Resource.Load<Sprite>($"Sprites/" + skill.ToDescription());
         texts[(int)SkillUIText.Name].text = skill.ToDescription();
         texts[(int)SkillUIText.Level].text = "Lv." + level;
-        texts[(int)SkillUIText.Description].text = "test\ntest\ntest\ntest";//Managers.Data.SkillDict[skill].Description;
+        texts[(int)SkillUIText.Description].text = Managers.Data.SkillDict[skill].Description;
         texts[(int)SkillUIText.LevelInfo].text = Managers.Data.SkillDict[skill].GetLevelInfo();
 
         for (int i = 1; i < transform.childCount - 1; ++i)
@@ -73,7 +73,7 @@ public class SkillSlotController : MonoBehaviour
         int level = Math.Max(PlayerDataController.Instance.GetSkillLevelAt(skill), 1);
 
         texts[(int)SkillUIText.Level].text = "Lv." + level;
-		//texts[(int)SkillUIText.LevelInfo].text = Managers.Data.SkillDict[skill].GetLevelInfo();
+		texts[(int)SkillUIText.LevelInfo].text = Managers.Data.SkillDict[skill].GetLevelInfo();
 
 		for(int i=0;i<Managers.Data.SkillDict[skill].MaxLevel; ++i)
 		{
@@ -89,7 +89,8 @@ public class SkillSlotController : MonoBehaviour
 
     public void LevelUp()
     {
-        if(PlayerDataController.Instance.LeftSkillPoint > 0)
+        if(PlayerDataController.Instance.LeftSkillPoint > 0 &&
+            Managers.Data.SkillDict[skill].MaxLevel > PlayerDataController.Instance.GetSkillLevelAt(skill))
         {
             PlayerDataController.Instance.SetSkillLevelAt(skill, PlayerDataController.Instance.GetSkillLevelAt(skill) + 1);
             PlayerDataController.Instance.LeftSkillPoint -= 1;

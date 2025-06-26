@@ -4,7 +4,6 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static SkillSlotController;
 
 public class ResultPanelController : MonoBehaviour
 {
@@ -17,30 +16,38 @@ public class ResultPanelController : MonoBehaviour
     [SerializeField]
     private Slider slider;
 
-    private const float SpeedBias = 1000f;
+    private PauseController pauseController;
+
+    private const float SpeedBias = 100f;
+
+    private void Awake()
+    {
+        pauseController = gameObject.GetOrAddComponent<PauseController>();
+    }
 
     private void OnEnable()
     {
+        pauseController.Pause();
         GamePlayController gamePlayController = FindAnyObjectByType<GamePlayController>();
         timeText.text = gamePlayController.GetGamePlayTime();
         scoreText.text = ((int)gamePlayController.Score).ToString();
         levelText.text = "LV " + PlayerDataController.Instance.Level.ToString();
+        slider.value = (float)PlayerDataController.Instance.CurrentExp / (float)Managers.Data.PlayerLevelDict[PlayerDataController.Instance.Level].exp;
+
         StartCoroutine(AddExp(gamePlayController.GetExp()));
+        //StartCoroutine(AddExp(100));
     }
 
     IEnumerator AddExp(float exp)
     {
-        exp += PlayerDataController.Instance.CurrentExp;
-        PlayerDataController.Instance.CurrentExp = 0;
-
         while (exp > 0 && PlayerDataController.Instance.Level < Managers.Data.MaxLevel)
         {
-            float currentExp = 0;
+            float currentExp = PlayerDataController.Instance.CurrentExp;
             float targetExp = Managers.Data.PlayerLevelDict[PlayerDataController.Instance.Level].exp;
             while (currentExp < targetExp)
             {
-                currentExp += Time.deltaTime * SpeedBias;
-                exp -= Time.deltaTime * SpeedBias;
+                currentExp += Time.unscaledDeltaTime * SpeedBias;
+                exp -= Time.unscaledDeltaTime * SpeedBias;
 
                 slider.value = currentExp / targetExp;
 
@@ -60,8 +67,9 @@ public class ResultPanelController : MonoBehaviour
                 yield return null;
             }
 
-            PlayerDataController.Instance.Level += 1;
+            PlayerDataController.Instance.LevelUp();
             levelText.text = "LV " + PlayerDataController.Instance.Level.ToString();
+            slider.value = 0;
 
             if (Managers.Data.PlayerLevelDict[PlayerDataController.Instance.Level].skillPoint == true)
             {
