@@ -19,7 +19,7 @@ public class GeneratorController : MonoBehaviour
     private Vector2 generatorSize = Vector2.zero;
     private int objectCount = 0;
 
-    private const float sizeBias = 0.9f;
+    private const float sizeBias = 0.8f;
     void Start()
     {
         if(generatingTargetObject == null)

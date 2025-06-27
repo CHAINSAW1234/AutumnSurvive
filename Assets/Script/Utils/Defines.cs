@@ -14,7 +14,6 @@ public static class Defines
         Effect
     }
 
-
     public enum State
     {
         Chase,
@@ -36,6 +35,14 @@ public static class Defines
         ShieldBee, //코스모스
         StraightBee // 코스모스2
         //Dummy // 더미
+    }
+
+    public enum UIEvent
+    {
+        Click,
+        Drag,
+        Down,
+        Up
     }
 
     public enum Boundary 

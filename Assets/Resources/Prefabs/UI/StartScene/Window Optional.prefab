@@ -82,7 +82,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Created by: \uC870\uD604\uC9C4\n\uAC1C\uBC1C \uAE30\uAC04 : 2025.06.06
-    ~ 2025.06.26"
+    ~ 2025.06.27"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 15c00b4bc1a5f1d499b455c445910db7, type: 2}
   m_sharedMaterial: {fileID: 1663551021481382293, guid: 15c00b4bc1a5f1d499b455c445910db7, type: 2}
@@ -178,7 +178,7 @@ RectTransform:
   m_GameObject: {fileID: 6563646405190313229}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6563646405372214716}
