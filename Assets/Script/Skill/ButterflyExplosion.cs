@@ -16,6 +16,7 @@ public class ButterflyExplosion : SkillController
     {
         base.OnEnable();
         State = Defines.State.Appear;
+        Managers.Sound.Play("Butterfly", Defines.Sound.Effect);
     }
 
 }

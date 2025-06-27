@@ -27,6 +27,7 @@ public class ShieldBee : SkillController
         base.OnEnable();
      
         State = Defines.State.Follow;
+        Managers.Sound.Play("Bee", Defines.Sound.Effect);
     }
 
     protected override void Update()

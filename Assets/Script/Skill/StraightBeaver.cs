@@ -44,6 +44,7 @@ public class StraightBeaver : SkillController
             BulletController bulletController = bullet.GetOrAddComponent<BulletController>();
             bulletController.Direction = direction;
             bulletController.MoveSpeed = Mathf.Max(0.1f, Managers.Input.TouchDirectionMagnitude) * bulletController.MoveSpeed + MagnitudeBias;
+            Managers.Sound.Play("Beaver", Defines.Sound.Effect);
 
             yield return new WaitForSeconds(GenerateDelay);
         }

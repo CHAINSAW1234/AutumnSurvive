@@ -38,6 +38,7 @@ public class SpreadBeaver : SkillController
 
             GameObject bullet = Managers.Resource.Instantiate("Origin/Bullet", transform.position);
             bullet.GetOrAddComponent<BulletController>().Direction = direction;
+            Managers.Sound.Play("Beaver", Defines.Sound.Effect);
 
             yield return new WaitForSeconds(GenerateDelay);
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SaadKhawaja.InstantScreenshot;
 
+#if UNITY_EDITOR
 public class Screenshot_Demo : MonoBehaviour
 {
     public void TakeScreenshotExample()
@@ -18,3 +19,4 @@ public class Screenshot_Demo : MonoBehaviour
 
     }
 }
+#endif

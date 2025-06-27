@@ -40,7 +40,7 @@ public class GamePlayController : MonoBehaviour
         }
     }
 
-	public void AddScore(int score)
+    public void AddScore(int score)
 	{
 		this.score += score;
 	}

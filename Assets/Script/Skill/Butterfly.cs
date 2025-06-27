@@ -15,6 +15,7 @@ public class Butterfly : SkillController
     {
         base.OnEnable();
         State = Defines.State.Move;
+        Managers.Sound.Play("Butterfly", Defines.Sound.Effect);
     }
 
 }

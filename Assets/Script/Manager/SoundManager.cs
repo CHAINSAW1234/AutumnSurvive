@@ -78,9 +78,8 @@ public class SoundManager
 
     AudioClip GetOrAddAudioClip(string path)
     {
-        if (path.Contains("Resources/Sounds/") == false)
-            path = $"Resources/Sounds/{path}";
-
+        if (path.Contains("Sounds/") == false)
+            path = $"Sounds/{path}";
         AudioClip audioClip = null;
         if (audioClips.TryGetValue(path, out audioClip) == false)
         {

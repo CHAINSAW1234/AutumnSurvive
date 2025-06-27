@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,13 @@ public class Squirrals : SkillController
     protected override void OnEnable()
     {
         base.OnEnable();
+
+        StartCoroutine(CreateSquirral());
+
+    }
+    
+    IEnumerator CreateSquirral()
+    {
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Enemy");
         List<GameObject> randomMosters = Utils.GetRandomUnique(monsters, CreateCount);
 
@@ -20,9 +28,12 @@ public class Squirrals : SkillController
         {
             GameObject obj = Managers.Resource.Instantiate("Squirral", transform.position);
             obj.GetOrAddComponent<Squirral>().SetTarget(randomMosters[i].transform);
+            Managers.Sound.Play("Squirral", Defines.Sound.Effect);
+            yield return new WaitForSeconds(0.05f);
         }
 
         Managers.Resource.Destroy(gameObject);
+        yield break;
     }
 
     public class Squirral : SkillController

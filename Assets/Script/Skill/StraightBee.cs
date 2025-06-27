@@ -28,6 +28,8 @@ public class StraightBee : SkillController
         float vertexExtent = Camera.main.orthographicSize;
         float horizontalExtent = vertexExtent * Screen.width / Screen.height;
         gameObject.transform.position = new Vector3(0, -vertexExtent - 0.5f, 0);
+
+        Managers.Sound.Play("Bee", Defines.Sound.Effect);
     }
 
     protected override void Update()
