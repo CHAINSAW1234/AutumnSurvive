@@ -133,7 +133,7 @@ public class PoolManager
             Object.Destroy(obj.gameObject);
             return;
         }
-
+            
         poolDict[obj.name].Enqueue(obj);
     }
 

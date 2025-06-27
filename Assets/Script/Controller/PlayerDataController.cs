@@ -74,18 +74,18 @@ public class PlayerDataController : MonoBehaviour
             Defines.Skill unlockSkill = Managers.Data.PlayerLevelDict[PlayerDataController.Instance.Level].skillUnlock;
             SetSkillLevelAt(unlockSkill, GetSkillLevelAt(unlockSkill) + 1);
         }
-
     }
 
     public int GetSkillLevelAt(Defines.Skill skill)
     {
         return skillLevels[(int)skill];
     }
+
     public void SetSkillLevelAt(Defines.Skill skill, int level)
     {
         int index = (int)skill;
 
-        if(1 <= level && level <= Managers.Data.SkillDict[skill].MaxLevel) // 수정 요망
+        if(1 <= level && level <= Managers.Data.SkillDict[skill].MaxLevel)
         {
             skillLevels[index] = level;
             SavePlayerData(PlayerDatasKeys.skillLevels, skillLevels);
@@ -104,8 +104,6 @@ public class PlayerDataController : MonoBehaviour
         value = Math.Clamp(value, 0, 100);
         sounds[index] = value;
         SavePlayerData(PlayerDatasKeys.sounds, sounds);
-
-
     }
 
     public void SaveAllPlayerData() {
@@ -199,9 +197,10 @@ public class PlayerDataController : MonoBehaviour
         public const string currentExp = "CurrentExp";
         public const string totalSkillPoint = "TotalSkillPoint";
         public const string leftSkillPoint = "LeftSkillPoint";
-        public const string skillLevels = "SkillLevels"; // List 저장용
+        public const string skillLevels = "SkillLevels";
         public const string sounds = "Sounds";
     }
+
     private static class PlayerDatasDefaults
     {
         public const int level = 1;

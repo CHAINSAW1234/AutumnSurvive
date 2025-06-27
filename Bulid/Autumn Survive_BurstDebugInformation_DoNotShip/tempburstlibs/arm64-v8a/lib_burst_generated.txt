@@ -9,7 +9,6 @@ Library: C:\Users\stgo5015\Documents\GitHub\LadyBug\Temp\StagingArea\tempburstli
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\stgo5015\Documents\GitHub\LadyBug\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2021.3.45f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\stgo5015\Documents\GitHub\LadyBug\Library\Burst
 --output=C:\Users\stgo5015\Documents\GitHub\LadyBug\Temp\StagingArea\tempburstlibs\arm64-v8a\lib_burst_generated

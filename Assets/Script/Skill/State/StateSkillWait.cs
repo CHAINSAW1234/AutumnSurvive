@@ -16,7 +16,7 @@ public class StateSkillWait : State
 
     public override void Enter()
     {
-        coroutine = context.StartCoroutine(IEnumerators.WaitForDurationAndAction(context.Duration, 
+        coroutine = context.StartCoroutine(IEnumerators.WaitForDurationAndAction(context.Duration / 10,
             () => { context.State = Defines.State.Disappear; }));
     }
 

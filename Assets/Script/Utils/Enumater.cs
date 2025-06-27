@@ -6,7 +6,7 @@ class IEnumerators
 {
     public static IEnumerator WaitForDurationAndAction(float duration, Action action)
     {
-        yield return new WaitForSeconds(duration / 10);
+        yield return new WaitForSeconds(duration);
         action?.Invoke();
         yield break;
     }

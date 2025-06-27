@@ -18,7 +18,7 @@ public class StateSkillFollow : State
 
     public override void Enter()
     {
-        coroutines.Add(context.StartCoroutine(IEnumerators.WaitForDurationAndAction(context.Duration, WaitAfterAction)));
+        coroutines.Add(context.StartCoroutine(IEnumerators.WaitForDurationAndAction(context.Duration/10, WaitAfterAction)));
         coroutines.Add(context.StartCoroutine(FollowPlayer()));
     }
 

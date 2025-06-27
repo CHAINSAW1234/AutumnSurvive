@@ -34,7 +34,7 @@ public static class Defines
         SpreadBeaver, // 베이비 버그1
         StraightBeaver, // 베이비 버그2
         ShieldBee, //코스모스
-        StraightBee, // 코스모스2
+        StraightBee // 코스모스2
         //Dummy // 더미
     }
 
@@ -48,7 +48,6 @@ public static class Defines
 
     public static readonly Vector2[] Direction = 
         { new Vector2(0, 1), new Vector2(0, -1), new Vector2(-1, 0), new Vector2(1, 0) };
-
 
     public const int Inf = int.MaxValue;
     public const float Infinity = float.MaxValue;

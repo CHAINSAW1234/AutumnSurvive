@@ -21,6 +21,7 @@ public class ButtonSceneController : MonoBehaviour
 
     private void ChangeScene(Defines.Scene scene)
     {
+
         Managers.Instance.Clear();
         SceneManager.LoadScene(scene.ToDescription());
     }

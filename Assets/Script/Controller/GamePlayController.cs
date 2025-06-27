@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.SocialPlatforms.Impl;
-using System.Collections.Generic;
 
 public class GamePlayController : MonoBehaviour
 {
