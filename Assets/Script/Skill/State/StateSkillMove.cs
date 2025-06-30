@@ -11,7 +11,7 @@ public class StateSkillMove : State
 {
     private SkillController context = null;
 
-    private readonly Vector3 Direction = new Vector3(0f, 1f, 0f);
+    private readonly Vector3 Direction = Vector3.up;
 
     public StateSkillMove(StateMachine stateMachine, SkillController context) : base(stateMachine)
     {

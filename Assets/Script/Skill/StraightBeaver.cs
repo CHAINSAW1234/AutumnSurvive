@@ -5,8 +5,9 @@ public class StraightBeaver : SkillController
 {
     private Coroutine coroutine = null;
 
-    private const float MagnitudeBias = 0.1f;
-    private const float GenerateDelay = 0.1f;
+    private const float minimumSpeed = 0.1f;
+    private const float magnitudeBias = 0.1f;
+    private const float generateDelay = 0.1f;
 
     protected override void Awake()
     {
@@ -32,7 +33,7 @@ public class StraightBeaver : SkillController
 
     private IEnumerator GenerateBeaver()
     {
-        Vector2 direction = new Vector2(0, 1f);
+        Vector2 direction = Vector2.up;
         for (int i = 0; i < CreateCount; ++i)
         {
             if(Managers.Input.TouchDirection != Vector3.zero)
@@ -40,13 +41,13 @@ public class StraightBeaver : SkillController
                 direction = Managers.Input.TouchDirection.normalized;
             }
 
-            GameObject bullet = Managers.Resource.Instantiate("Origin/Bullet", transform.position);
-            BulletController bulletController = bullet.GetOrAddComponent<BulletController>();
+            GameObject bullet = Managers.Resource.Instantiate("Origin/Beaver", transform.position);
+            BeaverController bulletController = bullet.GetOrAddComponent<BeaverController>();
             bulletController.Direction = direction;
-            bulletController.MoveSpeed = Mathf.Max(0.1f, Managers.Input.TouchDirectionMagnitude) * bulletController.MoveSpeed + MagnitudeBias;
+            bulletController.MoveSpeed = Mathf.Max(minimumSpeed, Managers.Input.TouchDirectionMagnitude) * bulletController.MoveSpeed;
             Managers.Sound.Play("Beaver", Defines.Sound.Effect);
 
-            yield return new WaitForSeconds(GenerateDelay);
+            yield return new WaitForSeconds(generateDelay);
         }
 
         Managers.Resource.Destroy(gameObject);

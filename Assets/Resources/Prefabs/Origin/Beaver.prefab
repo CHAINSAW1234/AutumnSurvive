@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 2925199341901970037}
   - component: {fileID: 2124661910808363464}
   m_Layer: 9
-  m_Name: Bullet
+  m_Name: Beaver
   m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

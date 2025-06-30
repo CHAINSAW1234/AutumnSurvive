@@ -5,11 +5,19 @@ using UnityEngine;
 
 public class CountdownController : MonoBehaviour
 {
+    [SerializeField]
+    GamePlayController gamePlayController;
+
     TextMeshProUGUI text;
 
     private const int count = 3;
     void Start()
     {
+        if(gamePlayController == null)
+        {
+            gamePlayController = FindObjectOfType<GamePlayController>();
+        }
+        gamePlayController.Reset();
         text = GetComponent<TextMeshProUGUI>();
         Time.timeScale = 0;
 
@@ -20,6 +28,7 @@ public class CountdownController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gamePlayController.Reset();
         text.alpha -= Time.unscaledDeltaTime;
     }
 

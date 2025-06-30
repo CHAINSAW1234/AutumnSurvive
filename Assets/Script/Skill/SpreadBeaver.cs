@@ -5,8 +5,9 @@ public class SpreadBeaver : SkillController
 {
     private Coroutine coroutine = null;
 
-    private const float GenerateDelay = 0.1f;
-    private const int RotationDegree = -25;
+    private const float generateDelay = 0.1f;
+    private const int rotationDegree = -25;
+
     protected override void Awake()
     {
         skill = Defines.Skill.SpreadBeaver;
@@ -28,19 +29,20 @@ public class SpreadBeaver : SkillController
         StopCoroutine(coroutine);
         coroutine = null;
     }
+
     private IEnumerator GenerateBeaver()
     {
-        Vector2 direction = Utils.GetRandomDirection(new Vector2(0, 1f), 0, 180);
+        Vector2 direction = Utils.GetRandomDirection(Vector2.up, 0, 30);
         for (int i = 0; i < CreateCount; ++i)
         {
-            Quaternion rotation = Quaternion.AngleAxis(RotationDegree, Vector3.forward);
+            Quaternion rotation = Quaternion.AngleAxis(rotationDegree, Vector3.forward);
             direction = rotation * direction;
 
-            GameObject bullet = Managers.Resource.Instantiate("Origin/Bullet", transform.position);
-            bullet.GetOrAddComponent<BulletController>().Direction = direction;
+            GameObject bullet = Managers.Resource.Instantiate("Origin/Beaver", transform.position);
+            bullet.GetOrAddComponent<BeaverController>().Direction = direction;
             Managers.Sound.Play("Beaver", Defines.Sound.Effect);
 
-            yield return new WaitForSeconds(GenerateDelay);
+            yield return new WaitForSeconds(generateDelay);
         }
 
         Managers.Resource.Destroy(gameObject);

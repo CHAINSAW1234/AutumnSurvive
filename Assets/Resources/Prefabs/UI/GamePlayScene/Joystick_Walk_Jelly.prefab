@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 2838147718086793791}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8317500516316317952}
@@ -203,7 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e939d294ca6fd7b4d88f6b847b1d0c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _joystickRadius: 5
   background: {fileID: 6842916830908494725}
   knob: {fileID: 3538404453969230693}
   panel: {fileID: 0}

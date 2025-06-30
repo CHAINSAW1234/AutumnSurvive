@@ -90,7 +90,6 @@ public class PlayerDataController : MonoBehaviour
             skillLevels[index] = level;
             SavePlayerData(PlayerDatasKeys.skillLevels, skillLevels);
         }
-
     }
 
     public float GetSoundAt(Defines.Sound sound)
@@ -119,7 +118,7 @@ public class PlayerDataController : MonoBehaviour
         string soundsString = string.Join(",", sounds);
         PlayerPrefs.SetString(PlayerDatasKeys.sounds, soundsString);
 
-        PlayerPrefs.Save(); // 저장 적용
+        PlayerPrefs.Save();
     }
     public void LoadAllPlayerData()
     {

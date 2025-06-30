@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private Animator animator = null;
-    private float moveSpeed = 10f;
+
+    private const float moveSpeed = 8f;
 
     private void Start()
     {
@@ -22,7 +23,6 @@ public class PlayerController : MonoBehaviour
 	}
     private void Update()
 	{
-
 	}
 
 	private void ApplyScreenBoundary()

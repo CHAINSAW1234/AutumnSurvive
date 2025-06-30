@@ -53,8 +53,8 @@ public static class Defines
         [Description("Right")] RIGHT = 3
     };
 
-    public static readonly Vector2[] Direction = 
-        { new Vector2(0, 1), new Vector2(0, -1), new Vector2(-1, 0), new Vector2(1, 0) };
+    public static readonly Vector2[] Direction =
+        { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
     public const int Inf = int.MaxValue;
     public const float Infinity = float.MaxValue;

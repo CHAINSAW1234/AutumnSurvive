@@ -2,9 +2,9 @@
 using System.Collections;
 
 
-public class BulletController : MonoBehaviour
+public class BeaverController : MonoBehaviour
 {
-    public Vector2 direction = new Vector2(0, 1);
+    private Vector2 direction = Vector2.up;
     public Vector2 Direction
     {
         get => direction;
@@ -14,11 +14,13 @@ public class BulletController : MonoBehaviour
             transform.up = -direction;
         }
     }
-    public float MoveSpeed { get; set; }
+    public float MoveSpeed { get; set; } = defaultMoveSpeed;
+
+    private const float defaultMoveSpeed = 10f;
     // Use this for initialization
     void OnEnable()
     {
-        MoveSpeed = 10f;
+        MoveSpeed = defaultMoveSpeed;
     }
 
     // Update is called once per frame

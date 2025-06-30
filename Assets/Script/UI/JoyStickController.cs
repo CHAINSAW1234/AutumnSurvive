@@ -8,18 +8,14 @@ using UnityEngine.UI;
 
 public class JoyStickController : MonoBehaviour
 {
-    [SerializeField] float _joystickRadius = 5.0f;
-
-
     [SerializeField]
-    Image background;
-
+    private Image background;
     [SerializeField]
-    Image knob;
-
+    private Image knob;
     [SerializeField]
-    Image panel;
+    private Image panel;
 
+    private const float joystickRadius = 0.8f;
     public void Start()
     {
         background.gameObject.SetActive(false);
@@ -38,55 +34,51 @@ public class JoyStickController : MonoBehaviour
         Vector2 position = Camera.main.ScreenToWorldPoint(data.position);
         background.transform.position = position;
 
-        BindEvent(knob.gameObject, DragJoystickHandle, Defines.UIEvent.Drag);
+        DragJoystickHandle(data);
     }
 
     private void HideJoystick(PointerEventData data)
     {
         background.gameObject.SetActive(false);
         knob.gameObject.SetActive(false);
-
-        BindEvent(knob.gameObject, DragJoystickHandle, Defines.UIEvent.Drag);
     }
 
     private void DragJoystickHandle(PointerEventData data)
     {
+        Vector2 parentPosition = knob.transform.parent.position;
         Vector2 position = Camera.main.ScreenToWorldPoint(data.position);
 
-        Vector2 dir = position - (Vector2)background.transform.position;
+        Vector2 dir = position - parentPosition;
+        dir =  Math.Min(dir.magnitude, joystickRadius) * dir.normalized;
 
-        dir = dir.normalized *  _joystickRadius;
-
-        knob.transform.localPosition = dir;
-
+        knob.transform.position = parentPosition + dir;
     }
 
-
-    public static void BindEvent(GameObject go, Action<PointerEventData> action, Defines.UIEvent type = Defines.UIEvent.Click)
+    public static void BindEvent(GameObject obj, Action<PointerEventData> action, Defines.UIEvent type = Defines.UIEvent.Click)
     {
-        UI_EventHandler evt = Utils.GetOrAddComponent<UI_EventHandler>(go);
+        UIEventHandler eventHandler = Utils.GetOrAddComponent<UIEventHandler>(obj);
 
         switch (type)
         {
             case Defines.UIEvent.Click:
-                evt.OnClickHandler -= action;
-                evt.OnClickHandler += action;
+                eventHandler.OnClickHandler -= action;
+                eventHandler.OnClickHandler += action;
                 break;
             case Defines.UIEvent.Drag:
-                evt.OnDragHandler -= action;
-                evt.OnDragHandler += action;
+                eventHandler.OnDragHandler -= action;
+                eventHandler.OnDragHandler += action;
                 break;
             case Defines.UIEvent.Down:
-                evt.OnDownHandler -= action;
-                evt.OnDownHandler += action;
+                eventHandler.OnDownHandler -= action;
+                eventHandler.OnDownHandler += action;
                 break;
             case Defines.UIEvent.Up:
-                evt.OnUpHandler -= action;
-                evt.OnUpHandler += action;
+                eventHandler.OnUpHandler -= action;
+                eventHandler.OnUpHandler += action;
                 break;
         }
     }
-    public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IDragHandler, IPointerDownHandler, IPointerUpHandler
+    public class UIEventHandler : MonoBehaviour, IPointerClickHandler, IDragHandler, IPointerDownHandler, IPointerUpHandler
     {
         public Action<PointerEventData> OnClickHandler = null;
         public Action<PointerEventData> OnDragHandler = null;

@@ -15,7 +15,7 @@ public class ItemController : MonoBehaviour
 
     private const float minSpeed = 4f;
     private const float maxSpeed = 8f;
-    private const int MaxReflectCount = 5;
+    private const int maxReflectCount = 5;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class ItemController : MonoBehaviour
 
     void OnEnable()
 	{
-        direction = Utils.GetRandomDirection(new Vector2(0, -1), 10, 50);
+        direction = Utils.GetRandomDirection(-Vector2.up, 10, 50);
         reflectCount = 0;
         moveSpeed = UnityEngine.Random.Range(minSpeed, maxSpeed);
 
@@ -73,7 +73,7 @@ public class ItemController : MonoBehaviour
 		direction = reflect;
 
         ++reflectCount;
-        if(reflectCount >= MaxReflectCount)
+        if(reflectCount >= maxReflectCount)
         {
             Managers.Resource.Destroy(gameObject);
         }

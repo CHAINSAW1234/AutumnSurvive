@@ -14,7 +14,7 @@ public class MonsterController : MonoBehaviour
     private const float minSpeed = 4f;
     private const float maxSpeed = 8f;
 
-    private const float Radius = 2f;
+    private const float radius = 2f;
 
     void OnEnable()
     {
@@ -22,7 +22,7 @@ public class MonsterController : MonoBehaviour
      
         Transform player = GameObject.FindWithTag("Player").transform;
 
-        Vector2 randomDirection = UnityEngine.Random.insideUnitCircle * Radius;
+        Vector2 randomDirection = UnityEngine.Random.insideUnitCircle * radius;
         Vector3 randomPosition = player.position + new Vector3(randomDirection.x, randomDirection.y, 0);
 
         direction = (randomPosition - transform.position).normalized;

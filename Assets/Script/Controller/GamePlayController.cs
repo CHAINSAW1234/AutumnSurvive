@@ -12,12 +12,11 @@ public class GamePlayController : MonoBehaviour
 	GeneratorController[] monsterGenerators;
 
 	private const float scoreSpeed = 100;
-    private static readonly float[] GeneratorOpenScore = { 10000f, 30000f };
+    private static readonly float[] generatorOpenScore = { 10000f, 30000f };
 
     void Start()
 	{
-		score = 0;
-        sceneStartTime = Time.time;
+        Reset();
     }
 
 	// Update is called once per frame
@@ -27,10 +26,9 @@ public class GamePlayController : MonoBehaviour
 		magnification = Mathf.Max(1f, magnification);
         score += Time.deltaTime * magnification * scoreSpeed;
 
-
-        for (int i = 0; i < GeneratorOpenScore.Length; i++)
+        for (int i = 0; i < generatorOpenScore.Length; i++)
         {
-            if (monsterGenerators[i].gameObject.activeInHierarchy == false && score >= GeneratorOpenScore[i])
+            if (monsterGenerators[i].gameObject.activeInHierarchy == false && score >= generatorOpenScore[i])
             {
                 monsterGenerators[i].gameObject.SetActive(true);
             }
@@ -53,5 +51,11 @@ public class GamePlayController : MonoBehaviour
         float second = (Time.time - sceneStartTime) % 60f;
 
         return string.Format("{0:D2} : {1:D2}", Mathf.FloorToInt(minute), Mathf.FloorToInt(second));
+    }
+
+    public void Reset()
+    {
+        score = 0;
+        sceneStartTime = Time.time;
     }
 }

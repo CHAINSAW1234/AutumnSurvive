@@ -13,8 +13,8 @@ public class StateSkillChase : State
 
     private float progress = 0f;
 
-    private const float MoveDuration = 1f;   // 이동 시간
-    private const float MaxRadius = 3f;      // 나선 반지름 (최대 값)
+    private const float moveDuration = 1f;   // 이동 시간
+    private const float maxRadius = 3f;      // 나선 반지름 (최대 값)
 
     public StateSkillChase(StateMachine stateMachine, SkillController context) : base(stateMachine)
     {
@@ -51,7 +51,7 @@ public class StateSkillChase : State
 
     private void Chase()
     {
-        progress += Time.deltaTime / MoveDuration;
+        progress += Time.deltaTime / moveDuration;
 
         Vector3 centerPosition = Vector3.Lerp(startPosition, targetPosition, progress);
 
@@ -59,7 +59,7 @@ public class StateSkillChase : State
         Vector3 perpendicular = new Vector3(-direction.y, direction.x, 0f); 
 
         float angle = Mathf.Lerp(0, Mathf.PI, progress);
-        float radius = Mathf.Lerp(MaxRadius, 0, progress);
+        float radius = Mathf.Lerp(maxRadius, 0, progress);
 
         Vector3 offset = perpendicular * Mathf.Sin(angle) * radius;
 

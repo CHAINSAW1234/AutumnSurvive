@@ -16,7 +16,7 @@ public class ResultPanelController : MonoBehaviour
 
     private PauseController pauseController;
 
-    private const float SpeedBias = 100f;
+    private const float speedBias = 100f;
 
     private void Awake()
     {
@@ -44,8 +44,8 @@ public class ResultPanelController : MonoBehaviour
             float targetExp = Managers.Data.PlayerLevelDict[PlayerDataController.Instance.Level].exp;
             while (currentExp < targetExp)
             {
-                currentExp += Time.unscaledDeltaTime * SpeedBias;
-                exp -= Time.unscaledDeltaTime * SpeedBias;
+                currentExp += Time.unscaledDeltaTime * speedBias;
+                exp -= Time.unscaledDeltaTime * speedBias;
 
                 slider.value = currentExp / targetExp;
 

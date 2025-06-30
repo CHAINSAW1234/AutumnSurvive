@@ -5,7 +5,7 @@
         SkillController context = null;
         private Vector3 scale = Vector3.zero;
 
-        private const float DeltaBias = 1.5f;
+        private const float deltaBias = 1.5f;
         public StateSkillAppear(StateMachine stateMachine, SkillController context) : base(stateMachine)
         {
             this.context = context;
@@ -18,7 +18,7 @@
         }
         public override void Execute()
         {
-            context.transform.localScale = context.transform.localScale + scale * Time.deltaTime * DeltaBias;
+            context.transform.localScale = context.transform.localScale + scale * Time.deltaTime * deltaBias;
 
             if(context.transform.localScale.x > scale.x)
             {
