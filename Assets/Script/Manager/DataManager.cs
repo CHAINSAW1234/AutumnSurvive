@@ -7,15 +7,19 @@ using UnityEngine;
 public class DataManager
 {
     public Dictionary<Defines.Skill, SkillLevelData> SkillDict { get; private set; } = new Dictionary<Defines.Skill, SkillLevelData>();
-    public Dictionary<int, PlayerLevelInfo> PlayerLevelDict { get; private set; } = new Dictionary<int, PlayerLevelInfo>();
+    public Dictionary<int, PlayerLevelInfo> PlayerLevelDict { get; private set; } = null;
 
     public int MaxLevel { get => PlayerLevelDict.Count; }
 
     public void Init()
     {
         ReadSkillDatas();
-        PlayerLevelData playerleveldata = LoadJson<PlayerLevelData>("PlayerLevelData");
-        PlayerLevelDict = playerleveldata.MakeDict();
+
+        if(PlayerLevelDict == null)
+        {
+            PlayerLevelData playerleveldata = LoadJson<PlayerLevelData>("PlayerLevelData");
+            PlayerLevelDict = playerleveldata.MakeDict();
+        }
     }
 
     public SkillLevelInfo? GetSkillLevelDataHelper(Defines.Skill skill, int level)
@@ -38,8 +42,11 @@ public class DataManager
     {
         foreach (Enum skill in Enum.GetValues(typeof(Defines.Skill)))
         {
-            SkillLevelData skillLoader = LoadJson<SkillLevelData>(skill.ToDescription());
-            SkillDict[(Defines.Skill)skill] = skillLoader;
+            if(!SkillDict.ContainsKey((Defines.Skill)skill))
+            {
+                SkillLevelData skillLoader = LoadJson<SkillLevelData>(skill.ToDescription());
+                SkillDict[(Defines.Skill)skill] = skillLoader;
+            }
         }
     }
 

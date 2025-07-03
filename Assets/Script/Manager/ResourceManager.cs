@@ -9,7 +9,7 @@ public class ResourceManager
         {
             string name = path;
             int index = name.LastIndexOf('/');
-            if(index >=0)
+            if(index >= 0)
             {
                 name = name.Substring(index + 1);
             }
@@ -64,6 +64,7 @@ public class ResourceManager
         obj.name = prefab.name;
         return obj;
     }
+
     public void Destroy(GameObject obj)
     {
         if (obj == null)

@@ -11,11 +11,8 @@ public class ExplosionController : MonoBehaviour
     {
         animator = gameObject.GetComponent<Animator>();
     }
-    void OnEnable()
-    {
-    }
 
-    void Update()
+    private void Update()
     {
         AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
 

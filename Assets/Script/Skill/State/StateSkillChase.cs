@@ -51,7 +51,7 @@ public class StateSkillChase : State
 
     private void Chase()
     {
-        progress += Time.deltaTime / moveDuration;
+        progress += Time.deltaTime;
 
         Vector3 centerPosition = Vector3.Lerp(startPosition, targetPosition, progress);
 
@@ -65,7 +65,7 @@ public class StateSkillChase : State
 
         context.transform.position = centerPosition + offset;
 
-        if (progress >= 1f)
+        if (progress >= moveDuration)
         {
             context.transform.position = targetPosition;
             context.State = Defines.State.Appear;

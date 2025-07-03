@@ -1,16 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class CountdownController : MonoBehaviour
 {
     [SerializeField]
-    GamePlayController gamePlayController;
+    private GamePlayController gamePlayController;
 
-    TextMeshProUGUI text;
+    private TextMeshProUGUI text;
 
     private const int count = 3;
+
     void Start()
     {
         if(gamePlayController == null)
@@ -25,7 +25,6 @@ public class CountdownController : MonoBehaviour
         StartCoroutine(Countdown());
     }
 
-    // Update is called once per frame
     void Update()
     {
         gamePlayController.Reset();

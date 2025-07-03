@@ -8,6 +8,7 @@ public static class Defines
         StartScene,
         GamePlayScene
     }
+
     public enum Sound
     {
         Bgm = 0,
@@ -24,17 +25,16 @@ public static class Defines
         Disappear,
         END
     }
+
     public enum Skill
     {
-        ButterflyExplosion, // 꽃잎 폭탄
-        Squirrals, // 유도탄
-        Butterfly, // 벌미사일
-        //Beaver, // 콩벌레
-        SpreadBeaver, // 베이비 버그1
-        StraightBeaver, // 베이비 버그2
-        ShieldBee, //코스모스
-        StraightBee // 코스모스2
-        //Dummy // 더미
+        ButterflyExplosion,
+        Squirrals,
+        Butterfly,
+        SpreadBeaver,
+        StraightBeaver,
+        ShieldBee,
+        StraightBee
     }
 
     public enum UIEvent

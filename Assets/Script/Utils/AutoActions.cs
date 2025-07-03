@@ -13,12 +13,10 @@ public class AutoActions : MonoBehaviour
     {
         OnAwakeEvent?.Invoke();
     }
-
     private void Start()
 	{
         OnStartEvent?.Invoke();
     }
-
 	private void Update()
 	{
         OnUpdateEvent?.Invoke();
@@ -27,7 +25,6 @@ public class AutoActions : MonoBehaviour
     {
         OnDisableEvent?.Invoke();
     }
-
     private void OnDestroy()
     {
         OnDestroyEvent?.Invoke();

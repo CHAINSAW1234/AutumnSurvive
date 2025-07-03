@@ -6,33 +6,34 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour
 {
     private GamePlayController gamePlayController;
-
     private Vector2 direction = Vector2.zero;
-
     private float moveSpeed;
 
+
+    private const int minScore = 30;
+    private const int maxScore = 50;
     private const float minSpeed = 4f;
     private const float maxSpeed = 8f;
-
     private const float radius = 2f;
 
-    void OnEnable()
+    private void OnEnable()
     {
-        gamePlayController = FindAnyObjectByType<GamePlayController>();
-     
+        if(gamePlayController == null)
+        {
+            gamePlayController = FindAnyObjectByType<GamePlayController>();
+        }
+        
         Transform player = GameObject.FindWithTag("Player").transform;
 
         Vector2 randomDirection = UnityEngine.Random.insideUnitCircle * radius;
         Vector3 randomPosition = player.position + new Vector3(randomDirection.x, randomDirection.y, 0);
 
         direction = (randomPosition - transform.position).normalized;
-
         transform.up = -direction;
-
         moveSpeed = UnityEngine.Random.Range(minSpeed, maxSpeed);
     }
 
-    void Update()
+    private void Update()
     {
         transform.position += new Vector3(direction.x, direction.y, 0) * Time.deltaTime * moveSpeed;
     }
@@ -45,7 +46,7 @@ public class MonsterController : MonoBehaviour
         switch (collision.transform.tag)
         {
             case "Skill":
-                gamePlayController.AddScore(UnityEngine.Random.Range(30, 50));
+                gamePlayController.AddScore(UnityEngine.Random.Range(minScore, maxScore));
                 Managers.Resource.Instantiate("Explosion", transform.position);
                 Managers.Resource.Destroy(gameObject);
                 Managers.Sound.Play("MonsterDead", Defines.Sound.Effect);

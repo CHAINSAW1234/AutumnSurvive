@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
 public class BoundaryController : MonoBehaviour
@@ -8,7 +5,7 @@ public class BoundaryController : MonoBehaviour
     [SerializeField]
     private float offset = 1f;
 
-    void Start()    // set boundary based on camera
+    private void Start()    // set boundary based on camera
     {
         float vertexExtent = Camera.main.orthographicSize * offset;
         float horizontalExtent = vertexExtent * Screen.width / Screen.height;

@@ -17,13 +17,12 @@ public class BeaverController : MonoBehaviour
     public float MoveSpeed { get; set; } = defaultMoveSpeed;
 
     private const float defaultMoveSpeed = 10f;
-    // Use this for initialization
+
     void OnEnable()
     {
         MoveSpeed = defaultMoveSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position += new Vector3(direction.x, direction.y, 0) * Time.deltaTime * MoveSpeed;

@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Managers : MonoBehaviour
 {
-    private static Managers s_Instance;
+    private static Managers instance;
     private InputManager inputManager = new InputManager();
     private ResourceManager resourceManager = new ResourceManager();
     private SoundManager soundManager = new SoundManager();
     private DataManager dataManager = new DataManager();
     private PoolManager poolManager = new PoolManager();
 
-    public static Managers Instance { get { Init(); return s_Instance; } }
+    public static Managers Instance { get { Init(); return instance; } }
     public static InputManager Input { get { return  Instance.inputManager; } }
     public static ResourceManager Resource {  get { return Instance.resourceManager; } }
     public static SoundManager Sound { get { return Instance.soundManager; } }
@@ -20,7 +18,7 @@ public class Managers : MonoBehaviour
 
     private static void Init()
     {
-        if(s_Instance == null)
+        if(instance == null)
         {
             GameObject gameObject = GameObject.Find("@Managers");
             if (null == gameObject)
@@ -30,10 +28,11 @@ public class Managers : MonoBehaviour
             }
             DontDestroyOnLoad(gameObject);
 
-            s_Instance = gameObject.GetComponent<Managers>();
-            s_Instance.InitManagers();
+            instance = gameObject.GetComponent<Managers>();
+            instance.InitManagers();
         }
     }
+
     private void InitManagers()
     {
         Sound.Init(gameObject.transform);
@@ -41,7 +40,7 @@ public class Managers : MonoBehaviour
         Pool.Init(gameObject.transform);
     }
 
-    void Update()
+    private void Update()
     {
         Input.Update();
     }
@@ -53,4 +52,6 @@ public class Managers : MonoBehaviour
         //Data.Clear();
         Pool.Clear();
     }
+
+
 }

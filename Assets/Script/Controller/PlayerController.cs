@@ -3,7 +3,8 @@
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    GameObject resultPanel;
+    private GameObject resultPanel;
+
 	public Vector3 Position 
 	{ 
 		get { return transform.position; } 
@@ -21,9 +22,6 @@ public class PlayerController : MonoBehaviour
         Managers.Input.Actions -= PlayerInput;
         Managers.Input.Actions += PlayerInput;
 	}
-    private void Update()
-	{
-	}
 
 	private void ApplyScreenBoundary()
 	{
@@ -38,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
 		transform.position = position;
     }
+
 	private void PlayerInput()
 	{
 		if (Managers.Input.TouchDirection != Vector3.zero)
@@ -53,7 +52,8 @@ public class PlayerController : MonoBehaviour
             }
 			transform.localScale = localScale;
 
-            Position = transform.position + Managers.Input.TouchDirection * Managers.Input.TouchDirectionMagnitude * moveSpeed * Time.deltaTime;
+            Position = transform.position + Managers.Input.TouchDirection * Managers.Input.TouchDirectionMagnitude 
+                        * moveSpeed * Time.deltaTime;
             animator.SetBool("Walk", true);
         }
 		else
@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour
         {
             case "Enemy":
                 resultPanel.SetActive(true);
-                // Finish Game
                 break;
 
         }

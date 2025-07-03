@@ -44,6 +44,7 @@ public class PoolManager
                 poolQueue.Enqueue(poolable);
             }
         }
+
         public Poolable Dequeue(Transform transform = null)
         {
             Poolable poolable;
@@ -100,7 +101,7 @@ public class PoolManager
         }
     }
 
-    Transform root;
+    private Transform root;
     private readonly Dictionary<string, Pool> poolDict = new Dictionary<string, Pool>();
 
     public void Init(Transform parent)
@@ -114,7 +115,6 @@ public class PoolManager
 
     private void CreatePool(GameObject origin)
     {
-
         if (origin != null && !poolDict.ContainsKey(origin.name))
         {
             int count = origin.GetOrAddComponent<Poolable>().poolCreateCount;
@@ -167,7 +167,6 @@ public class PoolManager
         return poolDict[original.name].Dequeue(position);
     }
 
-
     public GameObject GetOriginal(string name)
     {
         if(!poolDict.ContainsKey(name))
@@ -177,6 +176,7 @@ public class PoolManager
 
         return poolDict[name].Original;
     }
+
     public void Clear()
     {
         foreach(var pool in poolDict) {

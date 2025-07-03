@@ -10,6 +10,7 @@ public class InputManager
     public float TouchDirectionMagnitude { get; private set; } = 0f;
 
     private const float movementThreshold = 2f;
+
     public void Update()
     {
         if(Time.timeScale == 0)
@@ -23,7 +24,6 @@ public class InputManager
         bool isInputMoved = false;
         bool isInputEnded = false;
 
-
 #if UNITY_ANDROID || UNITY_IOS
         if (Input.touchCount > 0)
         {
@@ -34,7 +34,6 @@ public class InputManager
             isInputMoved = touch.phase == TouchPhase.Moved;
             isInputEnded = touch.phase == TouchPhase.Ended;
         }
-
 #elif UNITY_EDITOR
         inputPosition = Input.mousePosition;
         isInputBegan = Input.GetMouseButtonDown(0);
@@ -71,16 +70,16 @@ public class InputManager
         }
     }
 
-    public void Clear()
-    {
-        Actions = null;
-        ResetInputData();
-    }
-
     private void ResetInputData()
     {
         TouchStartPosition = TouchDirection = Vector3.zero;
         TouchDirectionMagnitude = 0;
+    }
+
+    public void Clear()
+    {
+        Actions = null;
+        ResetInputData();
     }
 }
 

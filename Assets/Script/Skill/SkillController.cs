@@ -3,10 +3,10 @@ using UnityEngine;
 public abstract class SkillController : MonoBehaviour
 {
     protected StateMachine stateMachine = new StateMachine();
+
     public Transform Player { get; protected set; } = null;
 
     protected Defines.Skill skill;
-
     public float MoveSpeed { get; protected set; }
     public float Duration { get; protected set; } = Defines.Infinity;
     public int CreateCount { get; protected set; } = 0;
@@ -54,7 +54,9 @@ public abstract class SkillController : MonoBehaviour
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (gameObject.activeInHierarchy == false)
+        {
             return;
+        }
 
         switch (collision.transform.tag)
         {
@@ -63,6 +65,7 @@ public abstract class SkillController : MonoBehaviour
                 break;
         }
     }
+
 
     private void CollisionBoundary(Collision2D collision)
     {

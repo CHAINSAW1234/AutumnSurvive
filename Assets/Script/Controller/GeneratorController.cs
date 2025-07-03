@@ -6,7 +6,6 @@ public class GeneratorController : MonoBehaviour
 {
     [SerializeField]
     private GameObject generatingTargetObject = null;
-
     [SerializeField]
     private float offset = 1f;
     [SerializeField]
@@ -20,7 +19,8 @@ public class GeneratorController : MonoBehaviour
     private int objectCount = 0;
 
     private const float sizeBias = 0.8f;
-    void Start()
+
+    private void Start()
     {
         if(generatingTargetObject == null)
         {
@@ -29,12 +29,7 @@ public class GeneratorController : MonoBehaviour
         }
 
         SetupGeneratePosition();
-
         StartCoroutine(GenerateGameObject());
-    }
-
-    void Update()
-    {
     }
 
     private void SetupGeneratePosition()

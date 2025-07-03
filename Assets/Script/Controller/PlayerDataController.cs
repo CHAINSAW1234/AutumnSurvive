@@ -6,24 +6,8 @@ using UnityEngine;
 
 public class PlayerDataController : MonoBehaviour
 {
-    private static PlayerDataController s_Instance = null;
-    public static PlayerDataController Instance { get { Init(); return s_Instance; } }
-    private static void Init()
-    {
-        if (s_Instance == null)
-        {
-            GameObject gameObject = GameObject.Find("@PlayerData");
-            if (null == gameObject)
-            {
-                gameObject = new GameObject { name = "@PlayerData" };
-                gameObject.AddComponent<PlayerDataController>();
-
-            }
-            DontDestroyOnLoad(gameObject);
-            s_Instance = gameObject.GetComponent<PlayerDataController>();
-            s_Instance.LoadAllPlayerData();
-        }
-    }
+    private static PlayerDataController instance = null;
+    public static PlayerDataController Instance { get { Init(); return instance; } }
 
     private int level;
     private int currentExp;
@@ -39,6 +23,23 @@ public class PlayerDataController : MonoBehaviour
     public ReadOnlyCollection<int> SkillLevels { get => skillLevels.AsReadOnly(); }
     public ReadOnlyCollection<float> Sounds { get => sounds.AsReadOnly(); }
 
+    private static void Init()
+    {
+        if (instance == null)
+        {
+            GameObject gameObject = GameObject.Find("@PlayerData");
+            if (null == gameObject)
+            {
+                gameObject = new GameObject { name = "@PlayerData" };
+                gameObject.AddComponent<PlayerDataController>();
+
+            }
+            DontDestroyOnLoad(gameObject);
+            instance = gameObject.GetComponent<PlayerDataController>();
+            instance.LoadAllPlayerData();
+        }
+    }
+
     private void OnDestroy()
     {
         SaveAllPlayerData();
@@ -46,7 +47,6 @@ public class PlayerDataController : MonoBehaviour
 
     public Defines.Skill GetRandomEnableSkill()
     {
-        // 1. 값이 0이 아닌 인덱스들을 수집
         List<int> nonZeroIndices = new List<int>();
         for (int i = 0; i < SkillLevels.Count; i++)
         {
@@ -54,7 +54,6 @@ public class PlayerDataController : MonoBehaviour
                 nonZeroIndices.Add(i);
         }
 
-        // 3. 무작위 인덱스 반환
         int randomIndex = UnityEngine.Random.Range(0, nonZeroIndices.Count);
         return (Defines.Skill)nonZeroIndices[randomIndex];
     }
@@ -80,7 +79,6 @@ public class PlayerDataController : MonoBehaviour
     {
         return skillLevels[(int)skill];
     }
-
     public void SetSkillLevelAt(Defines.Skill skill, int level)
     {
         int index = (int)skill;
@@ -106,12 +104,13 @@ public class PlayerDataController : MonoBehaviour
     }
 
     public void SaveAllPlayerData() {
+
         PlayerPrefs.SetInt(PlayerDatasKeys.level, level);
         PlayerPrefs.SetInt(PlayerDatasKeys.currentExp, currentExp);
         PlayerPrefs.SetInt(PlayerDatasKeys.totalSkillPoint, totalSkillPoint);
         PlayerPrefs.SetInt(PlayerDatasKeys.leftSkillPoint, leftSkillPoint);
 
-        // List<int> → 문자열로 저장 (쉼표로 구분)
+        // List → 문자열로 저장 (쉼표로 구분)
         string skillLevelsString = string.Join(",", skillLevels);
         PlayerPrefs.SetString(PlayerDatasKeys.skillLevels, skillLevelsString);
 
@@ -128,7 +127,6 @@ public class PlayerDataController : MonoBehaviour
         leftSkillPoint = PlayerPrefs.GetInt(PlayerDatasKeys.leftSkillPoint, PlayerDatasDefaults.leftSkillPoint);
 
         string skillLevelsString = PlayerPrefs.GetString(PlayerDatasKeys.skillLevels, "");
-
         if (!string.IsNullOrEmpty(skillLevelsString))
         {
             string[] values = skillLevelsString.Split(',');
@@ -142,7 +140,6 @@ public class PlayerDataController : MonoBehaviour
         }
 
         string soundString = PlayerPrefs.GetString(PlayerDatasKeys.sounds, "");
-
         if (!string.IsNullOrEmpty(soundString))
         {
             string[] values = soundString.Split(',');
@@ -156,32 +153,27 @@ public class PlayerDataController : MonoBehaviour
         }
 
     }
-    private void SavePlayerData<T>(string key, T value)
+    private static void SavePlayerData<T>(string key, T value)
     {
         switch (value)
         {
             case int intValue:
                 PlayerPrefs.SetInt(key, intValue);
                 break;
-
             case float floatValue:
                 PlayerPrefs.SetFloat(key, floatValue);
                 break;
-
             case string stringValue:
                 PlayerPrefs.SetString(key, stringValue);
                 break;
-
             case List<int> listValue:
                 string listIntAsString = string.Join(",", listValue);
                 PlayerPrefs.SetString(key, listIntAsString);
                 break;
-
             case List<float> listValue:
                 string listFloatAsString = string.Join(",", listValue);
                 PlayerPrefs.SetString(key, listFloatAsString);
                 break;
-
             default:
                 Debug.LogWarning($"지원하지 않는 타입: {value.GetType()}");
                 return;
