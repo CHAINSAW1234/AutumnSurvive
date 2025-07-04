@@ -7,7 +7,8 @@ public class ShieldBee : SkillController
     [SerializeField]
     private GameObject[] flys;
 
-    private const int maxFlysCount = 8; // this is for check prefab
+    private const int maxFlysCount = 8; // for check prefab
+
     protected override void Awake()
     {
         skill = Defines.Skill.ShieldBee;

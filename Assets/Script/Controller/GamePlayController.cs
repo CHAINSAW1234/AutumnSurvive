@@ -3,24 +3,21 @@
 public class GamePlayController : MonoBehaviour
 {
 	private float score = 0;
-
 	public float Score { get => score; }
-
 	private float sceneStartTime;
 
 	[SerializeField]
-	GeneratorController[] monsterGenerators;
+	private GeneratorController[] monsterGenerators;
 
 	private const float scoreSpeed = 100;
     private static readonly float[] generatorOpenScore = { 10000f, 30000f };
 
-    void Start()
+    private void Start()
 	{
         Reset();
     }
 
-	// Update is called once per frame
-	void Update()
+    private void Update()
 	{
 		float magnification = (Time.time - sceneStartTime) / 40f;
 		magnification = Mathf.Max(1f, magnification);

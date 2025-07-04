@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -16,6 +13,7 @@ public class JoyStickController : MonoBehaviour
     private Image panel;
 
     private const float joystickRadius = 0.8f;
+
     public void Start()
     {
         background.gameObject.SetActive(false);
@@ -78,6 +76,7 @@ public class JoyStickController : MonoBehaviour
                 break;
         }
     }
+    
     public class UIEventHandler : MonoBehaviour, IPointerClickHandler, IDragHandler, IPointerDownHandler, IPointerUpHandler
     {
         public Action<PointerEventData> OnClickHandler = null;
@@ -109,5 +108,4 @@ public class JoyStickController : MonoBehaviour
                 OnDragHandler.Invoke(eventData);
         }
     }
-
 }

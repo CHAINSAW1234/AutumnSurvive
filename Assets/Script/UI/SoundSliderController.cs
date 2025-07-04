@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +31,6 @@ public class SoundSliderController : MonoBehaviour
         }
     }
 
-
     public void ResetSliders()
     {
         foreach (Defines.Sound sound in Enum.GetValues(typeof(Defines.Sound)))
@@ -41,5 +38,4 @@ public class SoundSliderController : MonoBehaviour
             sliders[(int)sound].value = PlayerDataController.Instance.Sounds[(int)sound];
         }
     }
-
 }

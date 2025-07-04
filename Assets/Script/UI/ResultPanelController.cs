@@ -30,10 +30,10 @@ public class ResultPanelController : MonoBehaviour
         timeText.text = gamePlayController.GetGamePlayTime();
         scoreText.text = ((int)gamePlayController.Score).ToString();
         levelText.text = "LV " + PlayerDataController.Instance.Level.ToString();
-        slider.value = (float)PlayerDataController.Instance.CurrentExp / (float)Managers.Data.PlayerLevelDict[PlayerDataController.Instance.Level].exp;
+        slider.value = (float)PlayerDataController.Instance.CurrentExp / 
+            (float)Managers.Data.PlayerLevelDict[PlayerDataController.Instance.Level].exp;
 
         StartCoroutine(AddExp(gamePlayController.GetExp()));
-        //StartCoroutine(AddExp(100));
     }
 
     IEnumerator AddExp(float exp)
@@ -46,7 +46,6 @@ public class ResultPanelController : MonoBehaviour
             {
                 currentExp += Time.unscaledDeltaTime * speedBias;
                 exp -= Time.unscaledDeltaTime * speedBias;
-
                 slider.value = currentExp / targetExp;
 
                 if (currentExp >= targetExp)
@@ -75,7 +74,8 @@ public class ResultPanelController : MonoBehaviour
             }
             else
             {
-                SkillUnlockPanelController controller = Managers.Resource.Instantiate("UI/GamePlayScene/Skill Unlock Panel", transform.parent).GetComponent<SkillUnlockPanelController>();
+                SkillUnlockPanelController controller = Managers.Resource.Instantiate("UI/GamePlayScene/Skill Unlock Panel",
+                    transform.parent).GetComponent<SkillUnlockPanelController>();
                 controller.Skill = Managers.Data.PlayerLevelDict[PlayerDataController.Instance.Level].skillUnlock;
             }
         }

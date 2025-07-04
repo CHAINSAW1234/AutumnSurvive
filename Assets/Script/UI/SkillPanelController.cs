@@ -7,10 +7,8 @@ public class SkillPanelController : MonoBehaviour
 {
     [SerializeField]
     private GameObject content;
-
     [SerializeField]
     private TextMeshProUGUI skillPointText;
-
 
     private void Awake()
     {
@@ -33,7 +31,6 @@ public class SkillPanelController : MonoBehaviour
         for (int i = 0; i < length; ++i)
         {
             GameObject obj = content.transform.GetChild(i).gameObject;
-            
             Button[] skillButtons = obj.GetComponentsInChildren<Button>();
 
             foreach(Button button in skillButtons)
@@ -62,9 +59,9 @@ public class SkillPanelController : MonoBehaviour
 
     private void UpdateScrollView()
     {
-        for (int i=0;i< Enum.GetValues(typeof(Defines.Skill)).Length; ++i)
+        for (int i = 0; i < Enum.GetValues(typeof(Defines.Skill)).Length; ++i)
         {
-            if(PlayerDataController.Instance.SkillLevels[i] != 0)
+            if (PlayerDataController.Instance.SkillLevels[i] != 0)
             {
                 content.transform.GetChild(i).gameObject.SetActive(true);
             }

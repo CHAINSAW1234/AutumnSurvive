@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using System;
 using TMPro;
@@ -14,27 +13,20 @@ public class SkillSlotController : MonoBehaviour
 		LevelInfo
 	}
 
-
 	private Defines.Skill skill;
 	public Defines.Skill Skill { get => skill; set { skill = value; InitUI(); UpdateUIs(); } }
 
-    // 바꿔야 되는거 이미지, 설명, 스킬 이름, 레벨 ,설명, 레벨 GUI화
     [SerializeField]
-	Image skillIcon;
+	private Image skillIcon;
     [SerializeField]
-    TextMeshProUGUI[] texts = new TextMeshProUGUI[System.Enum.GetValues(typeof(SkillUIText)).Length];
+    private TextMeshProUGUI[] texts = new TextMeshProUGUI[System.Enum.GetValues(typeof(SkillUIText)).Length];
     [SerializeField]
-    Transform levelManagementUI;
+    private Transform levelManagementUI;
 
 	[SerializeField]
-	Sprite levelOnImage;
+    private Sprite levelOnImage;
     [SerializeField]
-    Sprite levelOffImage;
-
-    private void OnEnable()
-    {
-
-    }
+    private Sprite levelOffImage;
 
     private void InitUI()
     {
@@ -46,7 +38,7 @@ public class SkillSlotController : MonoBehaviour
         texts[(int)SkillUIText.Description].text = Managers.Data.SkillDict[skill].Description;
         texts[(int)SkillUIText.LevelInfo].text = Managers.Data.SkillDict[skill].GetLevelInfo();
 
-        for (int i = 1; i < transform.childCount - 1; ++i)
+        for (int i = 1; i < levelManagementUI.childCount - 1; ++i)
         {
             Managers.Resource.Destroy(transform.GetChild(i).gameObject);
         }
@@ -69,14 +61,14 @@ public class SkillSlotController : MonoBehaviour
     }
 
     private void UpdateUIs()
-	{
+    {
         int level = Math.Max(PlayerDataController.Instance.GetSkillLevelAt(skill), 1);
 
         texts[(int)SkillUIText.Level].text = "Lv." + level;
-		texts[(int)SkillUIText.LevelInfo].text = Managers.Data.SkillDict[skill].GetLevelInfo();
+        texts[(int)SkillUIText.LevelInfo].text = Managers.Data.SkillDict[skill].GetLevelInfo();
 
-		for(int i=0;i<Managers.Data.SkillDict[skill].MaxLevel; ++i)
-		{
+        for (int i = 0; i < Managers.Data.SkillDict[skill].MaxLevel; ++i)
+        {
             GameObject obj = levelManagementUI.transform.GetChild(i + 1).gameObject;
 
             Image img = obj.GetComponent<Image>();
@@ -84,15 +76,16 @@ public class SkillSlotController : MonoBehaviour
         }
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
-
     }
 
     public void LevelUp()
     {
-        if(PlayerDataController.Instance.LeftSkillPoint > 0 &&
-            Managers.Data.SkillDict[skill].MaxLevel > PlayerDataController.Instance.GetSkillLevelAt(skill))
+        int level = PlayerDataController.Instance.GetSkillLevelAt(skill);
+
+        if (PlayerDataController.Instance.LeftSkillPoint > 0 &&
+            Managers.Data.SkillDict[skill].MaxLevel > level)
         {
-            PlayerDataController.Instance.SetSkillLevelAt(skill, PlayerDataController.Instance.GetSkillLevelAt(skill) + 1);
+            PlayerDataController.Instance.SetSkillLevelAt(skill, level + 1);
             PlayerDataController.Instance.LeftSkillPoint -= 1;
             UpdateUIs();
         }
@@ -104,12 +97,9 @@ public class SkillSlotController : MonoBehaviour
 
         if(level > 1)
         {
-            PlayerDataController.Instance.SetSkillLevelAt(skill, PlayerDataController.Instance.GetSkillLevelAt(skill) - 1);
+            PlayerDataController.Instance.SetSkillLevelAt(skill, level - 1);
             PlayerDataController.Instance.LeftSkillPoint += 1;
             UpdateUIs();
         }
-
-
     }
-
 }

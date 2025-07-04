@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
+
 public class StateMachine
 {
     private Dictionary<Defines.State, State> states = new Dictionary<Defines.State, State>();
@@ -47,7 +45,6 @@ public class StateMachine
         State preState = curState;
         curState = states[stateType];
         curStateType = stateType;
-
 
         if (preState != null)
         {

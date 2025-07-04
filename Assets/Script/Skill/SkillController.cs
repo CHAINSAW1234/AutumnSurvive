@@ -1,3 +1,4 @@
+using Data;
 using UnityEngine;
 
 public abstract class SkillController : MonoBehaviour
@@ -41,8 +42,7 @@ public abstract class SkillController : MonoBehaviour
 
     protected void SetStatsFromData()
     {
-        
-        var data = Managers.Data.GetSkillLevelDataHelper(skill, PlayerDataController.Instance.GetSkillLevelAt(skill));
+        SkillLevelInfo? data = Managers.Data.GetSkillLevelDataHelper(skill, PlayerDataController.Instance.GetSkillLevelAt(skill));
         if (data.HasValue)
         {
             MoveSpeed = data.Value.moveSpeed;
@@ -65,7 +65,6 @@ public abstract class SkillController : MonoBehaviour
                 break;
         }
     }
-
 
     private void CollisionBoundary(Collision2D collision)
     {
