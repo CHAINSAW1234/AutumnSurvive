@@ -6,7 +6,6 @@ public class StraightBeaver : SkillController
     private Coroutine coroutine = null;
 
     private const float minimumSpeed = 0.1f;
-    private const float magnitudeBias = 0.1f;
     private const float generateDelay = 0.1f;
 
     protected override void Awake()

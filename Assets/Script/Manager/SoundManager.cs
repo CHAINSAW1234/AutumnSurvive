@@ -7,6 +7,9 @@ public class SoundManager
     private AudioSource[] audioSources = new AudioSource[Enum.GetValues(typeof(Defines.Sound)).Length];
     private Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
 
+    public const int MinVolume = 0;
+    public const int MaxVolume = 100;
+
     public void Init(Transform transform)
     {
         GameObject root = GameObject.Find("@Sound");

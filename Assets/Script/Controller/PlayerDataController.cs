@@ -98,7 +98,7 @@ public class PlayerDataController : MonoBehaviour
     {
         int index = (int)sound;
 
-        value = Math.Clamp(value, 0, 100);
+        value = Math.Clamp(value, SoundManager.MinVolume, SoundManager.MaxVolume);
         sounds[index] = value;
         SavePlayerData(PlayerDatasKeys.sounds, sounds);
     }
