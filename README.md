@@ -10,10 +10,10 @@ Unity Editor : 2021.3.45f1
 ## 기획
 과거 스마트폰이 막 출시된 시점의 레이디 버그 게임을 모작하여 제작한 게임입니다.
 
-### 조작
+## 조작
 - 터치 & 슬라이드 : 플레이어를 이동시킵니다
 
-### 캐릭터
+## 캐릭터
 **이동**
 - 터치 & 슬라이드로 플레이어를 이동합니다.
 - 아이템을 획득하여 스킬을 획득합니다
@@ -21,9 +21,8 @@ Unity Editor : 2021.3.45f1
 **스킬 강화**
 - 매 게임 종료 이후 경험치를 획득하여 스킬을 해금하거나 스킬 포인트를 획득할 수 있습니다.
 - 획득한 스킬 포인트로 스킬을 강화할 수 있습니다.
-- 
 
-### 스킬
+## 스킬
   
 **Butterfly**
   - 생성후 앞으로 이동하는 나비를 생성합니다
@@ -49,12 +48,12 @@ Unity Editor : 2021.3.45f1
   - 몬스터를 추적하는 다람쥐들을 생성합니다
 
     
-### 몬스터
+## 몬스터
   - 플레이어 주변 무작위 위치를 타켓으로 이동합니다
   - 시간이 지남에 따라 생성되는 방향이 다양해 집니다
   - 플레이어와 몬스터가 충돌하면 게임이 종료됩니다
 
-### UI
+## UI
 - 메인화면
     - 게임 시작
     - 스킬 창
@@ -74,5 +73,8 @@ Unity Editor : 2021.3.45f1
         - 게임 플레이 시간
         - 스킬 해금, 스킬 포인트 획득 UI 
 
-### Google Play Link
-  https://play.google.com/store/apps/details?id=com.stgo5015Company.AutumnSurvive
+## Google Play Link
+    https://play.google.com/store/apps/details?id=com.stgo5015Company.AutumnSurvive
+
+## 플레이 영상상
+    https://youtu.be/2R_G74LbD6w
