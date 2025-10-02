@@ -36,8 +36,9 @@ public class PoolManager
                 return;
             }
 
-            poolable.transform.SetParent(Root);
             poolable.gameObject.SetActive(false);
+            poolable.transform.SetParent(Root);
+
 
             if(!poolQueue.Contains(poolable))
             {
